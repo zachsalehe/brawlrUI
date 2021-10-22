@@ -10,6 +10,7 @@ public class signInScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_sign_in_screen);
     }
     public void backToMain(View view) {

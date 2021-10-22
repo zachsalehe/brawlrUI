@@ -7,93 +7,97 @@
     android:background="@drawable/gradient">
 
 
-    <EditText
-        android:id="@+id/username_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="101dp"
-        android:layout_marginTop="233dp"
-        android:layout_marginEnd="101dp"
-        android:layout_marginBottom="8dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Enter Username"
-        android:textAlignment="center"
+    <Button
+        android:id="@+id/back"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="119dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-light"
+        android:onClick="backToMain"
+        android:text="Back"
         android:textColor="#FFEB3B"
-        app:layout_constraintBottom_toTopOf="@+id/username"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:textSize="20sp"
+        app:iconTint="#FFEB3B"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        app:strokeColor="#FFEB3B" />
+
+    <Button
+        android:id="@+id/goSignIn"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="119dp"
+        android:layout_height="61dp"
+        android:fontFamily="sans-serif-light"
+        android:text="Sign In"
+        android:textColor="#FFEB3B"
+        android:textSize="20sp"
+        app:iconTint="#FFEB3B"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.85"
+        app:strokeColor="#FFEB3B" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="192dp"
+        android:layout_height="86dp"
+        android:layout_marginTop="172dp"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center"
+        android:text="Enter Username"
+        android:textColor="#FFEB3B"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/username"
         style="@android:style/Widget.AutoCompleteTextView"
         android:layout_width="209dp"
         android:layout_height="35dp"
-        android:layout_marginStart="101dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="101dp"
-        android:layout_marginBottom="26dp"
+        android:layout_marginTop="4dp"
         android:background="@color/white"
         android:ems="10"
+        android:hint="Username"
         android:inputType="textPersonName"
-        android:text="username"
         android:textColor="#000000"
         android:textColorHighlight="#FFEB3B"
-        app:layout_constraintBottom_toTopOf="@+id/password_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username_title" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
-    <EditText
-        android:id="@+id/password_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="101dp"
-        android:layout_marginTop="26dp"
-        android:layout_marginEnd="101dp"
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="192dp"
+        android:layout_height="86dp"
         android:layout_marginBottom="8dp"
-        android:ems="10"
+        android:fontFamily="sans-serif-light"
         android:gravity="center"
         android:text="Enter Password"
         android:textColor="#FFEB3B"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/password"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/password"
         android:layout_width="212dp"
         android:layout_height="35dp"
-        android:layout_marginStart="101dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="101dp"
+        android:layout_marginBottom="260dp"
         android:background="#FFFFFF"
         android:ems="10"
+        android:hint="Password"
         android:inputType="textPassword"
         android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password_title" />
-
-    <Button
-        android:id="@+id/back_to_home"
-        android:layout_width="155dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="101dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="155dp"
-        android:layout_marginBottom="101dp"
-        android:background="@color/black"
-        android:backgroundTint="@color/black"
-        android:onClick="backToMain"
-        android:text="Back"
-        android:textColor="#FFEB3B"
-        app:layout_constraintBottom_toTopOf="@+id/username_title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
