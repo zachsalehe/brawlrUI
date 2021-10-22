@@ -14,10 +14,14 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
     }
+
+    public void createAccountScreen(View view){
+        Intent intent = new Intent(this, createAccountScreen.class);
+        startActivity(intent);
+    }
     public void signInScreen(View view) {
 
         Intent intent = new Intent(this, signInScreen.class);
         startActivity(intent);
     }
 }
-
