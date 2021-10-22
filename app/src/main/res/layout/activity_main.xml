@@ -31,6 +31,7 @@
         android:layout_height="64dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/poo_font"
+        android:onClick="signInScreen"
         android:text="Sign In"
         android:textColor="#FFEB3B"
         android:textSize="20sp"
