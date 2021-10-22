@@ -19,4 +19,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, createAccountScreen.class);
         startActivity(intent);
     }
+    public void signInScreen(View view) {
+
+        Intent intent = new Intent(this, signInScreen.class);
+        startActivity(intent);
+    }
 }
