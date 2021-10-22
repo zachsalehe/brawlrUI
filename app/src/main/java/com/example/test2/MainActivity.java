@@ -2,7 +2,9 @@ package com.example.test2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -12,4 +14,10 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
     }
+    public void signInScreen(View view) {
+
+        Intent intent = new Intent(this, signInScreen.class);
+        startActivity(intent);
+    }
 }
+
