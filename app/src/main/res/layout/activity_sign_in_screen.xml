@@ -30,7 +30,8 @@
         android:layout_width="119dp"
         android:layout_height="61dp"
         android:fontFamily="sans-serif-light"
-        android:text="Sign In"
+        android:onClick="goToHome"
+        android:text="@string/sign_in"
         android:textColor="#FFEB3B"
         android:textSize="20sp"
         app:iconTint="#FFEB3B"
@@ -70,7 +71,9 @@
         android:textColorHighlight="#FFEB3B"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        tools:ignore="TouchTargetSizeCheck"
+        android:autofillHints="" />
 
     <TextView
         android:id="@+id/textView3"
@@ -94,10 +97,12 @@
         android:background="#FFFFFF"
         android:ems="10"
         android:hint="Password"
+        android:importantForAutofill="no"
         android:inputType="textPassword"
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -18,4 +18,8 @@ public class SignInScreen extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+    public void goToHome(View view){
+        Intent intent = new Intent(this, HomeScreen.class);
+        startActivity(intent);
+    }
 }

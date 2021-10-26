@@ -98,4 +98,8 @@ public class BiographicalScreen extends AppCompatActivity implements View.OnClic
                 break;
         }
     }
+    public void goToHome(View view){
+        Intent intent = new Intent(this, HomeScreen.class);
+        startActivity(intent);
+    }
 }

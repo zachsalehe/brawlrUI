@@ -25,4 +25,5 @@ public class CreateAccountScreen extends AppCompatActivity {
         Intent intent = new Intent(this, BiographicalScreen.class);
         startActivity(intent);
     }
+
 }
