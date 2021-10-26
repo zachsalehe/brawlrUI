@@ -57,24 +57,26 @@
 
 
 
+
+
     ]]>
 
     <Button
         android:id="@+id/goSignIn2"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        android:layout_width="171dp"
-        android:layout_height="79dp"
+        android:layout_width="120dp"
+        android:layout_height="64dp"
         android:fontFamily="sans-serif-light"
-        android:text="Create Account"
+        android:onClick="toBiographical"
+        android:text="Next"
         android:textColor="#FFEB3B"
         android:textSize="20sp"
         app:iconTint="#FFEB3B"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.906"
+        app:layout_constraintVertical_bias="0.884"
         app:strokeColor="#FFEB3B" />
 
     <TextView

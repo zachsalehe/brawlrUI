@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/activity_main_constraintlayout"
+    android:background="@drawable/gradient"><![CDATA[
+    tools:context=".createAccountScreen">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    ]]>
+
+
+
+    <Button
+        android:id="@+id/back"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="119dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-light"
+        android:onClick="backToCreate"
+        android:text="Back"
+        android:textColor="#FFEB3B"
+        android:textSize="20sp"
+        app:iconTint="#FFEB3B"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="#FFEB3B" />
+
+    <ScrollView
+        android:layout_width="382dp"
+        android:layout_height="587dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:fontFamily="sans-serif-light"
+                android:gravity="center"
+                android:text="Enter Fighting Style"
+                android:textColor="#FFEB3B"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/username3"
+                style="@android:style/Widget.AutoCompleteTextView"
+                android:layout_width="match_parent"
+                android:layout_height="93dp"
+                android:background="@color/white"
+                android:ems="10"
+                android:hint="Fighting Style"
+                android:inputType="textPersonName"
+                android:textColor="#000000"
+                android:textColorHighlight="#FFEB3B" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:fontFamily="sans-serif-light"
+                android:gravity="center"
+                android:text="Enter Measurables"
+                android:textColor="#FFEB3B"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/username4"
+                style="@android:style/Widget.AutoCompleteTextView"
+                android:layout_width="match_parent"
+                android:layout_height="93dp"
+                android:background="@color/white"
+                android:ems="10"
+                android:hint="Measurables"
+                android:inputType="textPersonName"
+                android:textColor="#000000"
+                android:textColorHighlight="#FFEB3B" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:fontFamily="sans-serif-light"
+                android:gravity="center"
+                android:text="Enter Biography"
+                android:textColor="#FFEB3B"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/username5"
+                style="@android:style/Widget.AutoCompleteTextView"
+                android:layout_width="match_parent"
+                android:layout_height="93dp"
+                android:background="@color/white"
+                android:ems="10"
+                android:hint="Biography"
+                android:inputType="textPersonName"
+                android:textColor="#000000"
+                android:textColorHighlight="#FFEB3B" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:fontFamily="sans-serif-light"
+                android:gravity="center"
+                android:text="Enter Controversial Opinion"
+                android:textColor="#FFEB3B"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/username6"
+                style="@android:style/Widget.AutoCompleteTextView"
+                android:layout_width="match_parent"
+                android:layout_height="93dp"
+                android:background="@color/white"
+                android:ems="10"
+                android:hint="Controversial Opinion"
+                android:inputType="textPersonName"
+                android:textColor="#000000"
+                android:textColorHighlight="#FFEB3B" />
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:fontFamily="sans-serif-light"
+                android:gravity="center"
+                android:text="Upload Image 1"
+                android:textColor="#FFEB3B"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@android:drawable/btn_dialog" />
+
+            <Button
+                android:id="@+id/button6"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:fontFamily="sans-serif-light"
+                android:gravity="center"
+                android:text="Upload Image"
+                android:textColor="#FFEB3B"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:fontFamily="sans-serif-light"
+                android:gravity="center"
+                android:text="Upload Image 2"
+                android:textColor="#FFEB3B"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/imageView7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@android:drawable/btn_dialog" />
+
+            <Button
+                android:id="@+id/button7"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:fontFamily="sans-serif-light"
+                android:gravity="center"
+                android:text="Upload Image"
+                android:textColor="#FFEB3B"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:fontFamily="sans-serif-light"
+                android:gravity="center"
+                android:text="Upload Image 3"
+                android:textColor="#FFEB3B"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/imageView8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@android:drawable/btn_dialog" />
+
+            <Button
+                android:id="@+id/button8"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:fontFamily="sans-serif-light"
+                android:gravity="center"
+                android:text="Upload Image"
+                android:textColor="#FFEB3B"
+                android:textSize="18sp" />
+
+            <Button
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="66dp"
+                android:fontFamily="sans-serif-light"
+                android:gravity="center"
+                android:text="Create Account"
+                android:textColor="#FFEB3B"
+                android:textSize="20sp"
+                app:iconTint="#FFEB3B"
+                app:strokeColor="#FFEB3B" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

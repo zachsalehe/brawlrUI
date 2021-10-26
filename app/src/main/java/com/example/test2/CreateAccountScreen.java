@@ -6,7 +6,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class createAccountScreen extends AppCompatActivity {
+public class CreateAccountScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -17,6 +17,12 @@ public class createAccountScreen extends AppCompatActivity {
     public void backToMain(View view) {
 
         Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    public void toBiographical(View view) {
+
+        Intent intent = new Intent(this, BiographicalScreen.class);
         startActivity(intent);
     }
 }
