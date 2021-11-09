@@ -9,51 +9,52 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="130dp"
-        android:layout_height="83dp"
-        android:layout_marginTop="1dp"
+        android:layout_width="129dp"
+        android:layout_height="90dp"
         android:onClick="profileScreen"
         android:text="Profile"
         app:icon="@drawable/ic_baseline_person_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout4" />
+        app:layout_constraintTop_toTopOf="@+id/button2" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="138dp"
         android:layout_height="85dp"
-        android:layout_marginTop="4dp"
+        android:onClick="homeScreen"
         android:text="Home"
         android:textSize="16sp"
         app:icon="@drawable/ic_baseline_home_24"
         app:iconPadding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout4" />
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
 
     <Button
         android:id="@+id/button3"
         android:layout_width="147dp"
         android:layout_height="86dp"
-        android:layout_marginTop="7dp"
-        android:onClick="messagesScreen"
         android:text="Messages"
         android:textSize="12sp"
         app:icon="@drawable/ic_baseline_message_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button2"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout4" />
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
 
-    <FrameLayout
-        android:id="@+id/frameLayout4"
-        android:layout_width="417dp"
-        android:layout_height="645dp"
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="384dp"
+        android:layout_height="643dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-    </FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"></LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

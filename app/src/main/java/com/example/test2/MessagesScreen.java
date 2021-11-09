@@ -1,23 +1,18 @@
 package com.example.test2;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
+public class MessagesScreen extends AppCompatActivity {
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-
-public class HomeScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
-        setContentView(R.layout.activity_home);
-
+        setContentView(R.layout.activity_messages_screen);
     }
 
     public void homeScreen(View view){

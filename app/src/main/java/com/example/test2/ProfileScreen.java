@@ -1,5 +1,7 @@
 package com.example.test2;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
@@ -10,9 +12,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.activity.result.ActivityResult;
-import androidx.appcompat.app.AppCompatActivity;
 
-public class BiographicalScreen extends AppCompatActivity implements View.OnClickListener {
+public class ProfileScreen extends AppCompatActivity implements View.OnClickListener {
 
     ImageView image1;
     Button button1;
@@ -25,10 +26,10 @@ public class BiographicalScreen extends AppCompatActivity implements View.OnClic
             ActivityResult> activityLauncher = BetterActivityResult.registerActivityForResult(this);
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
-        setContentView(R.layout.biographical_input);
+        setContentView(R.layout.activity_profile_screen);
 
         image1 = (ImageView) findViewById(R.id.imageView6);
         button1 = (Button) findViewById(R.id.button6);
@@ -40,13 +41,6 @@ public class BiographicalScreen extends AppCompatActivity implements View.OnClic
         button3 = (Button) findViewById(R.id.button8);
         button3.setOnClickListener(this);
     }
-
-    public void backToCreate(View view) {
-
-        Intent intent = new Intent(this, CreateAccountScreen.class);
-        startActivity(intent);
-    }
-
 
     public void uploadImage1() {
         Intent intent = new Intent(Intent.ACTION_PICK,
@@ -96,8 +90,19 @@ public class BiographicalScreen extends AppCompatActivity implements View.OnClic
                 break;
         }
     }
-    public void goToHome(View view){
+
+    public void homeScreen(View view){
         Intent intent = new Intent(this, HomeScreen.class);
+        startActivity(intent);
+    }
+
+    public void profileScreen(View view){
+        Intent intent = new Intent(this, ProfileScreen.class);
+        startActivity(intent);
+    }
+
+    public void messagesScreen(View view){
+        Intent intent = new Intent(this, MessagesScreen.class);
         startActivity(intent);
     }
 }
