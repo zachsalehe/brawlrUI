@@ -45,7 +45,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button2"
         app:layout_constraintTop_toBottomOf="@+id/frameLayout4" />
-
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="4dp"
+        android:id="@+id/relativeLayout"
+        tools:context=".HomeScreen">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:layout_centerInParent="true"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:text="@string/swipe_left_to_right_and_right_to_left_to_detect_swipe_gesture"/>
+    </RelativeLayout>
     <FrameLayout
         android:id="@+id/frameLayout4"
         android:layout_width="417dp"
