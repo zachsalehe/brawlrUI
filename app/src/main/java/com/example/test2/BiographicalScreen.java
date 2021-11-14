@@ -1,13 +1,16 @@
 package com.example.test2;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
 import androidx.appcompat.app.AppCompatActivity;
@@ -99,7 +102,17 @@ public class BiographicalScreen extends AppCompatActivity implements View.OnClic
         }
     }
     public void goToHome(View view){
-        Intent intent = new Intent(this, HomeScreen.class);
+        // TODO: move the reading of the input to InputManager
+        User user = (User) getIntent().getSerializableExtra("user");
+        EditText fightStyleInput = (EditText) findViewById(R.id.fightStyleInput);
+        EditText sizeInput = (EditText) findViewById(R.id.sizeInput);
+        EditText biographyInput = (EditText) findViewById(R.id.biographyInput);
+        EditText opinionInput = (EditText) findViewById(R.id.opinionInput);
+        user.setBiography(biographyInput.getText().toString());
+        user.setFightingStyle(fightStyleInput.getText().toString());
+        user.setControversialOpinions(opinionInput.getText().toString());
+        DatabaseManager.addUser(user);
+        Intent intent = new Intent(this, BiographicalScreen.class);
         startActivity(intent);
     }
 }

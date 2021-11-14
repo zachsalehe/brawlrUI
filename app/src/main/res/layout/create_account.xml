@@ -88,7 +88,7 @@
         android:text="Enter Email Address"
         android:textColor="#FFEB3B"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/username3"
+        app:layout_constraintBottom_toTopOf="@+id/fightStyleInput"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
@@ -104,7 +104,7 @@
         android:text="Enter Password"
         android:textColor="#FFEB3B"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/password2"
+        app:layout_constraintBottom_toTopOf="@+id/passwordInput"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
@@ -120,7 +120,7 @@
         android:text="Confirm Password"
         android:textColor="#FFEB3B"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/password3"
+        app:layout_constraintBottom_toTopOf="@+id/passwordConfirm"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
@@ -137,7 +137,7 @@
         android:text="Enter Username"
         android:textColor="#FFEB3B"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/username2"
+        app:layout_constraintBottom_toTopOf="@+id/usernameInput"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
@@ -145,7 +145,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <EditText
-        android:id="@+id/password2"
+        android:id="@+id/passwordInput"
         android:layout_width="212dp"
         android:layout_height="35dp"
         android:layout_marginBottom="308dp"
@@ -159,7 +159,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/username2"
+        android:id="@+id/usernameInput"
         style="@android:style/Widget.AutoCompleteTextView"
         android:layout_width="209dp"
         android:layout_height="35dp"
@@ -176,7 +176,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/password3"
+        android:id="@+id/passwordConfirm"
         android:layout_width="212dp"
         android:layout_height="35dp"
         android:layout_marginBottom="192dp"
@@ -190,7 +190,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/username3"
+        android:id="@+id/fightStyleInput"
         style="@android:style/Widget.AutoCompleteTextView"
         android:layout_width="209dp"
         android:layout_height="35dp"

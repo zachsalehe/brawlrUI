@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void createAccountScreen(View view){
+        DatabaseManager.getUser("pierre");
         Intent intent = new Intent(this, CreateAccountScreen.class);
         startActivity(intent);
     }

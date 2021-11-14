@@ -107,7 +107,7 @@
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/username3"
+                android:id="@+id/fightStyleInput"
                 style="@android:style/Widget.AutoCompleteTextView"
                 android:layout_width="match_parent"
                 android:layout_height="93dp"
@@ -129,7 +129,7 @@
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/username4"
+                android:id="@+id/sizeInput"
                 style="@android:style/Widget.AutoCompleteTextView"
                 android:layout_width="match_parent"
                 android:layout_height="93dp"
@@ -151,7 +151,7 @@
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/username5"
+                android:id="@+id/biographyInput"
                 style="@android:style/Widget.AutoCompleteTextView"
                 android:layout_width="match_parent"
                 android:layout_height="93dp"
@@ -173,7 +173,7 @@
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/username6"
+                android:id="@+id/opinionInput"
                 style="@android:style/Widget.AutoCompleteTextView"
                 android:layout_width="match_parent"
                 android:layout_height="93dp"
