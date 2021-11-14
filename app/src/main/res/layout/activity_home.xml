@@ -40,6 +40,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button2" />
 
+    <Button
+        android:onClick="logoutUser"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="119dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-light"
+        android:text="SignOut"
+        android:textColor="#FFEB3B"
+        android:textSize="18sp"
+        app:iconTint="#FFEB3B"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="#FFEB3B" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

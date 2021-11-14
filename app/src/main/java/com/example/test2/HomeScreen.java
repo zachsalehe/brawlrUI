@@ -45,6 +45,8 @@ public class HomeScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        mAuth = FirebaseAuth.getInstance();
+
         getOtherUsers();
         al = new ArrayList<>();
 
@@ -97,6 +99,7 @@ public class HomeScreen extends AppCompatActivity {
         notUserDb.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                String userId = mAuth.getCurrentUser().getUid();
                 if (snapshot.exists()) {
                     al.add(snapshot.child("name").getValue().toString());
                     arrayAdapter.notifyDataSetChanged();
@@ -138,5 +141,13 @@ public class HomeScreen extends AppCompatActivity {
     public void messagesScreen(View view){
         Intent intent = new Intent(this, MessagesScreen.class);
         startActivity(intent);
+    }
+
+    public void logoutUser(View view) {
+        mAuth.signOut();
+        Intent intent = new Intent(HomeScreen.this, MainActivity.class);
+        startActivity(intent);
+        finish();
+        return;
     }
 }
