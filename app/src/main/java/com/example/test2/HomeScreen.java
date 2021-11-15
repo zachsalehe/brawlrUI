@@ -19,6 +19,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.protobuf.Value;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
 import java.util.ArrayList;
@@ -26,8 +28,6 @@ import java.util.List;
 
 
 public class HomeScreen extends AppCompatActivity {
-//    private ArrayList<String> al;
-//    private ArrayAdapter<String> arrayAdapter;
     private cards cards_data[];
     private com.example.test2.cards.arrayAdapter arrayAdapter;
     private int i;
@@ -50,10 +50,9 @@ public class HomeScreen extends AppCompatActivity {
         currentUid = mAuth.getCurrentUser().getUid();
 
         getOtherUsers();
-//        al = new ArrayList<>();
 
         rowItems = new ArrayList<cards>();
-//        arrayAdapter = new ArrayAdapter<>(this, R.layout.item, R.id.name, al );
+
         arrayAdapter = new arrayAdapter(this, R.layout.item, rowItems );
 
         SwipeFlingAdapterView flingContainer = (SwipeFlingAdapterView) findViewById(R.id.frame);
@@ -80,6 +79,7 @@ public class HomeScreen extends AppCompatActivity {
                 cards obj = (cards) dataObject;
                 String userId = obj.getUserId();
                 usersDb.child(userId).child("connections").child("yes").child(currentUid).setValue(true);
+                isMatch(userId);
                 Toast.makeText(HomeScreen.this, "right", Toast.LENGTH_SHORT).show();
             }
 
@@ -92,8 +92,6 @@ public class HomeScreen extends AppCompatActivity {
             }
         });
 
-
-        // Optionally add an OnItemClickListener
         flingContainer.setOnItemClickListener(new SwipeFlingAdapterView.OnItemClickListener() {
             @Override
             public void onItemClicked(int itemPosition, Object dataObject) {
@@ -101,6 +99,25 @@ public class HomeScreen extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void isMatch(String userId) {
+        DatabaseReference currentUserConnectionsDb = usersDb.child(currentUid).child("connections").child("yes").child(userId);
+        currentUserConnectionsDb.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    Toast.makeText(HomeScreen.this, "new Connection", Toast.LENGTH_LONG).show();
+                    usersDb.child(snapshot.getKey()).child("connections").child("matches").child(currentUid).setValue(true);
+                    usersDb.child(currentUid).child("connections").child("matches").child(snapshot.getKey()).setValue(true);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     public void getOtherUsers() {
@@ -111,7 +128,6 @@ public class HomeScreen extends AppCompatActivity {
                 if (snapshot.exists() && !snapshot.child("connections").child("no").hasChild(currentUid) && !snapshot.child("connections").child("yes").hasChild(currentUid)) {
                     cards item = new cards(snapshot.getKey(), snapshot.child("name").getValue().toString());
                     rowItems.add(item);
-//                    al.add(snapshot.child("name").getValue().toString());
                     arrayAdapter.notifyDataSetChanged();
                 }
             }
