@@ -21,7 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class CreateAccountScreen extends AppCompatActivity {
 
     private Button mRegister;
-    private EditText mEmail, mPassword, mName;
+    private EditText mEmail, mPassword, mCPassword, mName;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthStateListener;
@@ -50,6 +50,7 @@ public class CreateAccountScreen extends AppCompatActivity {
 
         mEmail = (EditText) findViewById(R.id.username3);
         mPassword = (EditText) findViewById(R.id.password2);
+        mCPassword = (EditText) findViewById(R.id.password3);
         mName = (EditText) findViewById(R.id.username2);
 
         mRegister.setOnClickListener(new View.OnClickListener() {
@@ -57,8 +58,9 @@ public class CreateAccountScreen extends AppCompatActivity {
             public void onClick(View view) {
                 final String email = mEmail.getText().toString();
                 final String password = mPassword.getText().toString();
+                final String cPassword = mCPassword.getText().toString();
                 final String name = mName.getText().toString();
-                if (name.equals("") || password.equals("") || email.equals("")) {
+                if (name.equals("") || password.equals("") || email.equals("") || !password.equals(cPassword)) {
                     Toast.makeText(CreateAccountScreen.this, "sign up error", Toast.LENGTH_SHORT).show();
                     return;
                 }
