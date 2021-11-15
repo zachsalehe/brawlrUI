@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient">
 
-
     <Button
         android:id="@+id/button"
         android:layout_width="130dp"
@@ -56,20 +55,11 @@
         app:layout_constraintTop_toTopOf="parent"
         app:strokeColor="#FFEB3B" />
 
-    <RelativeLayout
+    <com.lorentzos.flingswipe.SwipeFlingAdapterView
+        android:id="@+id/frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="4dp"
-        android:id="@+id/relativeLayout"
-        tools:context=".HomeScreen">
-
-        <com.lorentzos.flingswipe.SwipeFlingAdapterView
-            android:id="@+id/frame"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:rotation_degrees="15.5"
-            tools:context=".MyActivity" />
-
-    </RelativeLayout>
+        app:rotation_degrees="15.5"
+        tools:context=".MyActivity" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

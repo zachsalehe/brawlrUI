@@ -65,8 +65,10 @@ public class CreateAccountScreen extends AppCompatActivity {
                             Toast.makeText(CreateAccountScreen.this, "sign up error", Toast.LENGTH_SHORT).show();
                         }else{
                             String userId = mAuth.getCurrentUser().getUid();
-                            DatabaseReference currentUserDb = FirebaseDatabase.getInstance().getReference().child("Users").child(userId).child("name");
-                            currentUserDb.setValue(name);
+                            DatabaseReference currentUserDb1 = FirebaseDatabase.getInstance().getReference().child("Users").child(userId).child("name");
+                            DatabaseReference currentUserDb2 = FirebaseDatabase.getInstance().getReference().child("Users").child(userId).child("connections").child("no").child(userId);
+                            currentUserDb1.setValue(name);
+                            currentUserDb2.setValue(true);
                         }
                     }
                 });
