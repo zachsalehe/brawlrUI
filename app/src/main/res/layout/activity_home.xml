@@ -98,10 +98,26 @@
                     android:textSize="24sp" />
 
                 <TextView
-                    android:id="@+id/textView23"
+                    android:id="@+id/textView231"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="User's Measurables"
+                    android:text="User's Weight"
+                    android:textColor="#FFEB3B"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/textView232"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="User's Height"
+                    android:textColor="#FFEB3B"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/textView233"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="User's Sex"
                     android:textColor="#FFEB3B"
                     android:textSize="20sp" />
 
