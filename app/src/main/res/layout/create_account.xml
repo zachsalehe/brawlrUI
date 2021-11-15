@@ -4,62 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context="com.example.test2.CreateAccountScreen"
     android:id="@+id/activity_main_constraintlayout"
-    android:background="@drawable/gradient"><![CDATA[
-    tools:context=".createAccountScreen">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    ]]>
+    android:background="@drawable/gradient">
 
     <Button
         android:id="@+id/goSignIn2"
