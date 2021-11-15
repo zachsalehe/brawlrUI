@@ -55,6 +55,10 @@ public class SignInScreen extends AppCompatActivity {
             public void onClick(View view) {
                 final String username = mEmail.getText().toString();
                 final String password = mPassword.getText().toString();
+                if (username.equals("") || password.equals("")) {
+                    Toast.makeText(SignInScreen.this, "sign up error", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 mAuth.signInWithEmailAndPassword(username, password).addOnCompleteListener(SignInScreen.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
