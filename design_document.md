@@ -26,7 +26,7 @@ We used the Factory Design Pattern for the views/screens (particularly in the Fr
 1. Josh and Yixing have been working on chat creation, and implementation with firebase and our UI. We also implemented the Factory Design Pattern on our ViewManager, which is now our ViewFactory. Will continue to work on chat and connecting ViewFactory to our Android Studio backend code going into the next phase. 
 2. Anay and Zach have been working on creating screens for each part of the app, as well as general UI necessities. Will continue to build the UI and improve functionality.
 3. Jaden and Ramy have been working on the swiping function, and generating user cards on the home screen with data from the database.
-4. Pierre has worked on Firebase database implementation, porting and appropriate interpretation of our skeleton classes from IntelliJ into Android Studio, refactoring of code into Clean Code Architecture, and general project management.
+4. Pierre has worked on Firebase database implementation, porting and appropriate interpretation of our skeleton classes from IntelliJ into Android Studio, and user creation, as well as refactoring of code into Clean Code Architecture, and general project management.
 
 
 
