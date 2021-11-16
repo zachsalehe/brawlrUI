@@ -1,11 +1,13 @@
 package com.example.test2;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
@@ -26,8 +28,10 @@ public class Chat extends AppCompatActivity {
      */
     ArrayList<String> history = new ArrayList<>();
     private String currentUserID;
-    DatabaseReference reference;
-    FirebaseDatabase database;
+    private DatabaseReference reference;
+    private FirebaseDatabase database;
+
+
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -35,6 +39,7 @@ public class Chat extends AppCompatActivity {
         currentUserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         database = FirebaseDatabase.getInstance();
         reference = database.getReference();
+
 
 
     }
@@ -49,10 +54,11 @@ public class Chat extends AppCompatActivity {
         @Override
         public void onCancelled(DatabaseError databaseError) {
             // Getting Post failed, log a message
-            Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+            //Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+            System.out.println("Error");
         }
     };
-mPostReference.addValueEventListener(postListener);
+    reference.addValueEventListener(postListener);
     //private ArrayList<Matches> matches = new ArrayList<Matches>();
     /**
     private List<Matches> getDataSetMatches(){
