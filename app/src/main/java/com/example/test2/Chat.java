@@ -28,8 +28,10 @@ public class Chat extends AppCompatActivity {
      */
     ArrayList<String> history = new ArrayList<>();
     private String currentUserID;
-    private DatabaseReference reference;
-    private FirebaseDatabase database;
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference reference = database.getReference();
+
+
 
 
 
