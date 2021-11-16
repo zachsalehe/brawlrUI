@@ -5,24 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/activity_main_constraintlayout"
-    android:background="@drawable/gradient"><![CDATA[
-    tools:context=".MainActivity">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    ]]>
+    android:background="@drawable/gradient">
 
     <Button
         android:id="@+id/signIn"
@@ -31,7 +14,6 @@
         android:layout_height="64dp"
         android:layout_marginTop="16dp"
         android:fontFamily="sans-serif-light"
-        android:onClick="signInScreen"
         android:text="@string/sign_in"
         android:textColor="#FFEB3B"
         android:textSize="20sp"
@@ -61,7 +43,6 @@
         android:layout_width="260dp"
         android:layout_height="64dp"
         android:fontFamily="sans-serif-light"
-        android:onClick="createAccountScreen"
         android:text="@string/create_account"
         android:textColor="#FFEB3B"
         android:textSize="20sp"

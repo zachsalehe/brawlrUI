@@ -13,6 +13,8 @@ import android.widget.ImageView;
 
 import androidx.activity.result.ActivityResult;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class ProfileScreen extends AppCompatActivity implements View.OnClickListener {
 
     ImageView image1;
