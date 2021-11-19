@@ -26,7 +26,7 @@ import java.util.List;
  * this class will allow both user1 (client) and some user2 to enter messages
  * into a chat log.
  */
-public class Chat extends AppCompatActivity {
+public class MessageActivity extends AppCompatActivity {
     /**
      * Instantiates a new database of the message history
      * for the current chat.
