@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.auth.User;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -37,11 +40,13 @@ public class MessageActivity extends AppCompatActivity {
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference reference = database.getReference();
     Intent intent;
+    ImageButton send_btn;
+    EditText text_message;
 
 
 
 
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messages_screen); //or chat screen
         currentUserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -58,10 +63,21 @@ public class MessageActivity extends AppCompatActivity {
             }
         })
         */
+
         username = findViewById(R.id.username);
         intent = getIntent();
         String userid = intent.getStringExtra("userid");
 
+        send_btn = findViewById(R.id.button);
+        send_btn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                String msg = text_send.getText().toString();
+                if (!msg.equals("")){
+                    sendMessage(currentUserID, userid, msg);
+                }
+            }
+        });
 
         ValueEventListener postListener = new ValueEventListener() {
             @Override
@@ -80,6 +96,14 @@ public class MessageActivity extends AppCompatActivity {
                 System.out.println("Error");
             }
         };
+    }
+    private void sendMessage(String sender, String receiver, String message){
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("sender", sender);
+        hashMap.put("receiver", receiver);
+        hashMap.put("message", message);
+
+        reference.child("Chats").push().setValue(hashMap);
     }
 
     //reference.addValueEventListener(postListener);
