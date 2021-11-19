@@ -11,6 +11,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.auth.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +50,9 @@ public class Chat extends AppCompatActivity {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
             // Get Post object and use the values to update the UI
-            Post post = dataSnapshot.getValue(Post.class);
+            User post = dataSnapshot.getValue(User.class);
+            System.out.println(reference.child("Unit1"));
+            dataSnapshot.getValue(String.class);
             // ..
         }
 
@@ -60,54 +63,54 @@ public class Chat extends AppCompatActivity {
             System.out.println("Error");
         }
     };
-    reference.addValueEventListener(postListener);
+    //reference.addValueEventListener(postListener);
     //private ArrayList<Matches> matches = new ArrayList<Matches>();
-    /**
-    private List<Matches> getDataSetMatches(){
-        return matches;
-    }
-     **/
-    /**
-     * Constructor to instantiate a new conversation between
-     * User1 and User2.
-     * @param User1 One of two users in the chat.
-     * @param User2 One of two users in the chat.
-     */
-    public Chat(User User1, User User2) {
-        this.User1 = User1;
-        this.User2 = User2;
-    }
-
-    /**
-     * A method to send a new message and add it to the history
-     * ArrayList. Will change the sender depending on whether
-     * it's user1 currently sending or user2.
-     *
-     * Also, how the boolean IsUser1 will be changed is
-     * something we won't deal with for now. All of this will
-     * later be replaced by server and socket implementations.
-     *
-     * @param User1 One of two users in the chat.
-     * @param User2 One of two users in the chat.
-     * @param Message the string of the message written by a user.
-     * @param IsUser1 a boolean to check which user is the sender.
-     */
-    public void SendMessage(User User1, User User2, String Message, boolean IsUser1){
-        String u1name = User1.getId();
-        String u2name = User2.getId();
-        if (IsUser1) {
-            history.add(u1name + ": " + Message);
-        } else {
-            history.add(u2name + ":" + Message);
-        }
-    }
-
-    /**
-     * Returns the complete chat log.
-     * @return returns the chat log list.
-     */
-    public List<String> DisplayLog() {
-        return history;
-    }
+//    /**
+//    private List<Matches> getDataSetMatches(){
+//        return matches;
+//    }
+//     **/
+//    /**
+//     * Constructor to instantiate a new conversation between
+//     * User1 and User2.
+//     * @param User1 One of two users in the chat.
+//     * @param User2 One of two users in the chat.
+//     */
+//    public Chat(User User1, User User2) {
+//        this.User1 = User1;
+//        this.User2 = User2;
+//    }
+//
+//    /**
+//     * A method to send a new message and add it to the history
+//     * ArrayList. Will change the sender depending on whether
+//     * it's user1 currently sending or user2.
+//     *
+//     * Also, how the boolean IsUser1 will be changed is
+//     * something we won't deal with for now. All of this will
+//     * later be replaced by server and socket implementations.
+//     *
+//     * @param User1 One of two users in the chat.
+//     * @param User2 One of two users in the chat.
+//     * @param Message the string of the message written by a user.
+//     * @param IsUser1 a boolean to check which user is the sender.
+//     */
+//    public void SendMessage(User User1, User User2, String Message, boolean IsUser1){
+//        String u1name = User1.getId();
+//        String u2name = User2.getId();
+//        if (IsUser1) {
+//            history.add(u1name + ": " + Message);
+//        } else {
+//            history.add(u2name + ":" + Message);
+//        }
+//    }
+//
+//    /**
+//     * Returns the complete chat log.
+//     * @return returns the chat log list.
+//     */
+//    public List<String> DisplayLog() {
+//        return history;
+//    }
 
 }
