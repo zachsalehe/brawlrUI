@@ -59,42 +59,41 @@
 
 
 
+
+
+
+
     ]]>
 
-
-
-    <Button
-        android:id="@+id/back"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        android:layout_width="119dp"
-        android:layout_height="61dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="sans-serif-light"
-        android:onClick="backToCreate"
-        android:text="Back"
-        android:textColor="#FFEB3B"
-        android:textSize="20sp"
-        app:iconTint="#FFEB3B"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:strokeColor="#FFEB3B" />
-
     <ScrollView
-        android:layout_width="382dp"
-        android:layout_height="587dp"
+        android:layout_width="374dp"
+        android:layout_height="682dp"
         android:layout_marginStart="1dp"
         android:layout_marginEnd="1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.485"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <Button
+                android:id="@+id/back"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="119dp"
+                android:layout_height="61dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="sans-serif-light"
+                android:onClick="backToCreate"
+                android:text="Back"
+                android:textColor="#FFEB3B"
+                android:textSize="20sp"
+                app:iconTint="#FFEB3B"
+                app:strokeColor="#FFEB3B" />
 
             <TextView
                 android:id="@+id/textView7"
@@ -119,26 +118,65 @@
                 android:textColorHighlight="#FFEB3B" />
 
             <TextView
-                android:id="@+id/textView8"
+                android:id="@+id/textView81"
                 android:layout_width="match_parent"
                 android:layout_height="49dp"
                 android:fontFamily="sans-serif-light"
                 android:gravity="center"
-                android:text="Enter Measurables"
+                android:text="Enter Weight"
                 android:textColor="#FFEB3B"
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/username4"
+                android:id="@+id/username41"
                 style="@android:style/Widget.AutoCompleteTextView"
                 android:layout_width="match_parent"
-                android:layout_height="93dp"
+                android:layout_height="30dp"
                 android:background="@color/white"
                 android:ems="10"
-                android:hint="Measurables"
+                android:hint="Weight"
                 android:inputType="textPersonName"
                 android:textColor="#000000"
                 android:textColorHighlight="#FFEB3B" />
+
+            <TextView
+                android:id="@+id/textView82"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:fontFamily="sans-serif-light"
+                android:gravity="center"
+                android:text="Enter Height"
+                android:textColor="#FFEB3B"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/username42"
+                style="@android:style/Widget.AutoCompleteTextView"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="@color/white"
+                android:ems="10"
+                android:hint="Height"
+                android:inputType="textPersonName"
+                android:textColor="#000000"
+                android:textColorHighlight="#FFEB3B" />
+
+            <TextView
+                android:id="@+id/textView83"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:fontFamily="sans-serif-light"
+                android:gravity="center"
+                android:text="Choose Your Sex"
+                android:textColor="#FFEB3B"
+                android:textSize="18sp" />
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="#FFEB3B"
+                android:entries="@array/sex_options" />
 
             <TextView
                 android:id="@+id/textView9"

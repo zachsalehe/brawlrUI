@@ -89,23 +89,45 @@
                 android:textColorHighlight="#FFEB3B" />
 
             <TextView
-                android:id="@+id/textView8"
+                android:id="@+id/textView81"
                 android:layout_width="match_parent"
                 android:layout_height="49dp"
                 android:fontFamily="sans-serif-light"
                 android:gravity="center"
-                android:text="Change Measurables"
+                android:text="Change Weight"
                 android:textColor="#FFEB3B"
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/username4"
+                android:id="@+id/username41"
                 style="@android:style/Widget.AutoCompleteTextView"
                 android:layout_width="match_parent"
-                android:layout_height="93dp"
+                android:layout_height="30dp"
                 android:background="@color/white"
                 android:ems="10"
-                android:hint="Measurables"
+                android:hint="Weight"
+                android:inputType="textPersonName"
+                android:textColor="#000000"
+                android:textColorHighlight="#FFEB3B" />
+
+            <TextView
+                android:id="@+id/textView82"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:fontFamily="sans-serif-light"
+                android:gravity="center"
+                android:text="Change Height"
+                android:textColor="#FFEB3B"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/username42"
+                style="@android:style/Widget.AutoCompleteTextView"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="@color/white"
+                android:ems="10"
+                android:hint="Height"
                 android:inputType="textPersonName"
                 android:textColor="#000000"
                 android:textColorHighlight="#FFEB3B" />
@@ -231,7 +253,6 @@
                 android:text="Upload Image"
                 android:textColor="#FFEB3B"
                 android:textSize="18sp" />
-
 
         </LinearLayout>
     </ScrollView>

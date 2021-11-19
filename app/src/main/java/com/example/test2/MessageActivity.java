@@ -1,9 +1,13 @@
 package com.example.test2;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -22,16 +26,17 @@ import java.util.List;
  * this class will allow both user1 (client) and some user2 to enter messages
  * into a chat log.
  */
-public class Chat extends AppCompatActivity {
+public class MessageActivity extends AppCompatActivity {
     /**
      * Instantiates a new database of the message history
      * for the current chat.
      */
     ArrayList<String> history = new ArrayList<>();
+    TextView username;
     private String currentUserID;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference reference = database.getReference();
-
+    Intent intent;
 
 
 
@@ -42,27 +47,41 @@ public class Chat extends AppCompatActivity {
         currentUserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         database = FirebaseDatabase.getInstance();
         reference = database.getReference();
+        /*
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        //getSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Meow");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.getNavigationOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                finish()
+            }
+        })
+        */
+        username = findViewById(R.id.username);
+        intent = getIntent();
+        String userid = intent.getStringExtra("userid");
 
 
+        ValueEventListener postListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // Get Post object and use the values to update the UI
+                User user = dataSnapshot.getValue(User.class);
+                System.out.println(reference.child("Unit1"));
+                dataSnapshot.getValue(Message.class);
+                // ..
+            }
 
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting Post failed, log a message
+                //Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+                System.out.println("Error");
+            }
+        };
     }
-    ValueEventListener postListener = new ValueEventListener() {
-        @Override
-        public void onDataChange(DataSnapshot dataSnapshot) {
-            // Get Post object and use the values to update the UI
-            User post = dataSnapshot.getValue(User.class);
-            System.out.println(reference.child("Unit1"));
-            dataSnapshot.getValue(String.class);
-            // ..
-        }
 
-        @Override
-        public void onCancelled(DatabaseError databaseError) {
-            // Getting Post failed, log a message
-            //Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
-            System.out.println("Error");
-        }
-    };
     //reference.addValueEventListener(postListener);
     //private ArrayList<Matches> matches = new ArrayList<Matches>();
 //    /**
