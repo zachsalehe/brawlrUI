@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient">
 
-
     <Button
         android:id="@+id/button"
         android:layout_width="130dp"
@@ -40,95 +39,27 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button2" />
 
-    <RelativeLayout
+    <Button
+        android:onClick="logoutUser"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="119dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-light"
+        android:text="SignOut"
+        android:textColor="#FFEB3B"
+        android:textSize="18sp"
+        app:iconTint="#FFEB3B"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="#FFEB3B" />
+
+    <com.lorentzos.flingswipe.SwipeFlingAdapterView
+        android:id="@+id/frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="4dp"
-        android:id="@+id/relativeLayout"
-        tools:context=".HomeScreen">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="@string/swipe_left_to_right_and_right_to_left_to_detect_swipe_gesture"
-            android:textAlignment="center"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <ScrollView
-            android:layout_width="327dp"
-            android:layout_height="638dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/imageView9"
-                    android:layout_width="match_parent"
-                    android:layout_height="401dp"
-                    app:srcCompat="@drawable/ic_baseline_person_24" />
-
-                <TextView
-                    android:id="@+id/textView21"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="User's Name"
-                    android:textColor="#FFEB3B"
-                    android:textSize="30sp" />
-
-                <ImageView
-                    android:id="@+id/imageView10"
-                    android:layout_width="match_parent"
-                    android:layout_height="401dp"
-                    app:srcCompat="@drawable/ic_baseline_person_24" />
-
-                <TextView
-                    android:id="@+id/textView22"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="User's Fighting Style"
-                    android:textColor="#FFEB3B"
-                    android:textSize="24sp" />
-
-                <TextView
-                    android:id="@+id/textView23"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="User's Measurables"
-                    android:textColor="#FFEB3B"
-                    android:textSize="20sp" />
-
-                <ImageView
-                    android:id="@+id/imageView11"
-                    android:layout_width="match_parent"
-                    android:layout_height="401dp"
-                    app:srcCompat="@drawable/ic_baseline_person_24" />
-
-                <TextView
-                    android:id="@+id/textView24"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="User's Biography"
-                    android:textColor="#FFEB3B"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/textView25"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="User's Contoversial Opinion"
-                    android:textColor="#FFEB3B"
-                    android:textSize="18sp" />
-            </LinearLayout>
-        </ScrollView>
-
-    </RelativeLayout>
+        app:rotation_degrees="15.5"
+        tools:context=".MyActivity" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
