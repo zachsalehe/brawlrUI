@@ -51,6 +51,16 @@ public class User implements Serializable {
         this.loginInfo = loginInfo;
     }
 
+    public User(String id, HashMap<String, String> loginInfo,
+                String fightStyle,
+                String biography, String opinion){
+        this.fightingStyle = fightStyle;
+        this.biography = biography;
+        this.controversialOpinions = opinion;
+        this.id = id;
+        this.loginInfo = loginInfo;
+    }
+
     public User(){
     }
 
