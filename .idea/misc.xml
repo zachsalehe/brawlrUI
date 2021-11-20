@@ -29,15 +29,18 @@
         <entry key="..\:/Users/anred/AndroidStudioProjects/brawlr/app/src/main/res/layout/fragment_profile.xml" value="0.1431159420289855" />
         <entry key="..\:/Users/anred/AndroidStudioProjects/brawlr/app/src/main/res/menu/home_menu.xml" value="0.2713541666666667" />
         <entry key="app/src/main/res/drawable/gradient.xml" value="0.25833333333333336" />
-        <entry key="app/src/main/res/layout/activity_home.xml" value="0.1448578489402683" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_messages_screen.xml" value="0.1503623188405797" />
+        <entry key="app/src/main/res/layout/activity_home.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/activity_matches.xml" value="0.1956521739130435" />
+        <entry key="app/src/main/res/layout/activity_messages_screen.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_profile_screen.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_sign_in_screen.xml" value="0.22792637422160542" />
+        <entry key="app/src/main/res/layout/biographical_input.xml" value="0.20878623188405798" />
         <entry key="app/src/main/res/layout/create_account.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.11930091185410334" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.1381340579710145" />
         <entry key="app/src/main/res/layout/item.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/item_matches.xml" value="0.25" />
       </map>
     </option>
   </component>
