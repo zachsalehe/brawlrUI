@@ -40,6 +40,14 @@ public class HomeScreen extends AppCompatActivity {
     ListView listView;
     List<cards> rowItems;
 
+    /**
+     * onCreate runs code upon the creation of the class using the current
+     * state of the app.
+     * The function will manage the overall pulling of users from the database to the app,
+     * create cards to prepare for the swiping feature, and remove cards from the array upon
+     * swiping actions.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
