@@ -85,7 +85,7 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
                 // Get Post object and use the values to update the UI
                 User user = dataSnapshot.getValue(User.class);
                 System.out.println(reference.child("Unit1"));
-                dataSnapshot.getValue(Message.class);
+                dataSnapshot.getValue(Chat.class);
                 // ..
             }
 
