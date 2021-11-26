@@ -29,7 +29,7 @@ import java.util.List;
  * this class will allow both user1 (client) and some user2 to enter messages
  * into a chat log.
  */
-public class MessageActivity extends AppCompatActivity {
+public class MessageActivity extends AppCompatActivity implements View.OnClickListener{
     /**
      * Instantiates a new database of the message history
      * for the current chat.
@@ -52,22 +52,18 @@ public class MessageActivity extends AppCompatActivity {
         currentUserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         database = FirebaseDatabase.getInstance();
         reference = database.getReference();
-
-        /**
-         * #TODO UI Components
-         */
-        /*
         Toolbar toolbar = findViewById(R.id.toolbar);
         //getSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Meow");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setTitle("Meow");
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        /*
         toolbar.getNavigationOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
                 finish()
             }
         })
         */
-        /*
+
         username = findViewById(R.id.username);
         intent = getIntent();
         String userid = intent.getStringExtra("userid");
@@ -83,11 +79,6 @@ public class MessageActivity extends AppCompatActivity {
             }
         });
 
-         */
-        /**
-         * Creates an event listener, to allow to read changes to chat data and update the
-         * view accordingly
-         */
         ValueEventListener postListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -98,9 +89,6 @@ public class MessageActivity extends AppCompatActivity {
                 // ..
             }
 
-            /**
-             * Error Message for chat
-             */
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 // Getting Post failed, log a message
@@ -109,13 +97,6 @@ public class MessageActivity extends AppCompatActivity {
             }
         };
     }
-
-    /**
-     * Method to send messages from "sender" to "receiver" in database.
-     * @param sender UserID of User sending message
-     * @param receiver UserID of User receiving message
-     * @param message Message being sent
-     */
     private void sendMessage(String sender, String receiver, String message){
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("sender", sender);
