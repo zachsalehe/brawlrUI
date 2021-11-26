@@ -8,36 +8,38 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="130dp"
-        android:layout_height="83dp"
+        android:layout_width="137dp"
+        android:layout_height="85dp"
         android:onClick="profileScreen"
         android:text="Profile"
+        android:textSize="16sp"
         app:icon="@drawable/ic_baseline_person_24"
+        app:iconPadding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="138dp"
+        android:layout_width="137dp"
         android:layout_height="85dp"
         android:text="Home"
         android:textSize="16sp"
         app:icon="@drawable/ic_baseline_home_24"
         app:iconPadding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button" />
+        app:layout_constraintStart_toEndOf="@+id/button"
+        app:layout_constraintEnd_toStartOf="@+id/button3" />
 
     <Button
         android:id="@+id/button3"
-        android:layout_width="147dp"
-        android:layout_height="86dp"
-        android:onClick="messagesScreen"
+        android:layout_width="137dp"
+        android:layout_height="85dp"
+        android:onClick="matchesScreen"
         android:text="Messages"
         android:textSize="12sp"
         app:icon="@drawable/ic_baseline_message_24"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button2" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:onClick="logoutUser"

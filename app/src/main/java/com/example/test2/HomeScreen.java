@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.test2.cards.arrayAdapter;
 import com.example.test2.cards.cards;
+import com.example.test2.matches.MatchesActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -49,7 +50,7 @@ public class HomeScreen extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         currentUid = mAuth.getCurrentUser().getUid();
 
-        getOtherUsers();
+        getOtherUsers(); 
 
         rowItems = new ArrayList<cards>();
 
@@ -126,7 +127,11 @@ public class HomeScreen extends AppCompatActivity {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 if (snapshot.exists() && !snapshot.child("connections").child("no").hasChild(currentUid) && !snapshot.child("connections").child("yes").hasChild(currentUid)) {
-                    cards item = new cards(snapshot.getKey(), snapshot.child("name").getValue().toString());
+                    String profileImageUrl = "default";
+                    if (!snapshot.child("profileImageUrl").getValue().equals("default")) {
+                        profileImageUrl = snapshot.child("profileImageUrl").getValue().toString();
+                    }
+                    cards item = new cards(snapshot.getKey(), snapshot.child("name").getValue().toString(), profileImageUrl);
                     rowItems.add(item);
                     arrayAdapter.notifyDataSetChanged();
                 }
@@ -164,8 +169,13 @@ public class HomeScreen extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void messagesScreen(View view){
-        Intent intent = new Intent(this, MessagesScreen.class);
+//    public void messagesScreen(View view){
+//        Intent intent = new Intent(this, MessagesScreen.class);
+//        startActivity(intent);
+//    }
+
+    public void matchesScreen(View view){
+        Intent intent = new Intent(this, MatchesActivity.class);
         startActivity(intent);
     }
 
