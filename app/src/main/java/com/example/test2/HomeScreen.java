@@ -68,6 +68,10 @@ public class HomeScreen extends AppCompatActivity {
 
         flingContainer.setAdapter(arrayAdapter);
         flingContainer.setFlingListener(new SwipeFlingAdapterView.onFlingListener() {
+            /**
+             * Pops off the first object in the cards array after a card has been swiped on,
+             * regardless of the direction of the s
+             */
             @Override
             public void removeFirstObjectInAdapter() {
                 Log.d("LIST", "removed object!");
@@ -75,6 +79,11 @@ public class HomeScreen extends AppCompatActivity {
                 arrayAdapter.notifyDataSetChanged();
             }
 
+            /**
+             * Removes the currently displayed user card from the client user's
+             * connections if the client swiped left. (In the "no" child of "connections")
+             * @param dataObject
+             */
             @Override
             public void onLeftCardExit(Object dataObject) {
                 cards obj = (cards) dataObject;
@@ -83,6 +92,11 @@ public class HomeScreen extends AppCompatActivity {
                 Toast.makeText(HomeScreen.this, "left", Toast.LENGTH_SHORT).show();
             }
 
+            /**
+             * Adds the currently displayed user card to the client user's connections
+             * if the client swiped right. (In the "yes" child of "connections").
+             * @param dataObject
+             */
             @Override
             public void onRightCardExit(Object dataObject) {
                 cards obj = (cards) dataObject;
@@ -92,15 +106,28 @@ public class HomeScreen extends AppCompatActivity {
                 Toast.makeText(HomeScreen.this, "right", Toast.LENGTH_SHORT).show();
             }
 
+            /**
+             * Use this to continuously add more user cards from the database into the
+             * Adapter array in order to be displayed. It'd probably be nice to implement this
+             * feature for scalability reasons as the user database gets larger.
+             * @param itemsInAdapter
+             */
             @Override
             public void onAdapterAboutToEmpty(int itemsInAdapter) {
             }
 
+            /**
+             * Listener for scrolling action.
+             * @param scrollProgressPercent
+             */
             @Override
             public void onScroll(float scrollProgressPercent) {
             }
         });
 
+        /**
+         * Listener to indicate that the card has been clicked on.
+         */
         flingContainer.setOnItemClickListener(new SwipeFlingAdapterView.OnItemClickListener() {
             @Override
             public void onItemClicked(int itemPosition, Object dataObject) {
