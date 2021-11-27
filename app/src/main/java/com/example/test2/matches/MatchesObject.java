@@ -1,10 +1,10 @@
-package com.example.test2.cards;
+package com.example.test2.matches;
 
-public class cards {
+public class MatchesObject {
     private String userId;
     private String name;
     private String profileImageUrl;
-    public cards (String userId, String name, String profileImageUrl){
+    public MatchesObject (String userId, String name, String profileImageUrl){
         this.userId = userId;
         this.name = name;
         this.profileImageUrl = profileImageUrl;

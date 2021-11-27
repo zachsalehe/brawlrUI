@@ -18,6 +18,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class CreateAccountScreen extends AppCompatActivity {
 
     private Button mRegister;
@@ -71,10 +74,16 @@ public class CreateAccountScreen extends AppCompatActivity {
                             Toast.makeText(CreateAccountScreen.this, "sign up error", Toast.LENGTH_SHORT).show();
                         }else{
                             String userId = mAuth.getCurrentUser().getUid();
-                            DatabaseReference currentUserDb1 = FirebaseDatabase.getInstance().getReference().child("Users").child(userId).child("name");
+                            DatabaseReference currentUserDb = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
                             DatabaseReference currentUserDb2 = FirebaseDatabase.getInstance().getReference().child("Users").child(userId).child("connections").child("no").child(userId);
-                            currentUserDb1.setValue(name);
+                            Map userInfo = new HashMap<>();
+                            userInfo.put("name", name);
+                            userInfo.put("profileImageUrl", "default");
                             currentUserDb2.setValue(true);
+                            currentUserDb.updateChildren(userInfo);
+
+
+
                         }
                     }
                 });

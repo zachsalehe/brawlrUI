@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient">
 
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="0dp"
@@ -39,20 +40,23 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
+
     <Button
         android:id="@+id/button"
-        android:layout_width="129dp"
-        android:layout_height="0dp"
+        android:layout_width="137dp"
+        android:layout_height="85dp"
         android:onClick="profileScreen"
         android:text="Profile"
+        android:textSize="16sp"
         app:icon="@drawable/ic_baseline_person_24"
+        app:iconPadding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_image" />
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2"/>
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="138dp"
+        android:layout_width="137dp"
         android:layout_height="85dp"
         android:onClick="homeScreen"
         android:text="Home"
@@ -61,18 +65,18 @@
         app:iconPadding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button"
+        app:layout_constraintEnd_toStartOf="@+id/button3"
         app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
 
     <Button
         android:id="@+id/button3"
-        android:layout_width="147dp"
-        android:layout_height="86dp"
+        android:layout_width="137dp"
+        android:layout_height="85dp"
         android:text="Messages"
         android:textSize="12sp"
         app:icon="@drawable/ic_baseline_message_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button2"
         app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
 
     <ScrollView
@@ -94,7 +98,6 @@
 
          </EditText>
     </ScrollView>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

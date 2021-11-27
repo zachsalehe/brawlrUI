@@ -16,12 +16,13 @@
         app:icon="@drawable/ic_baseline_person_24"
         app:iconPadding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <Button
         android:id="@+id/button2"
         android:layout_width="137dp"
         android:layout_height="85dp"
+        android:onClick="homeScreen"
         android:text="Home"
         android:textSize="16sp"
         app:icon="@drawable/ic_baseline_home_24"
@@ -34,34 +35,25 @@
         android:id="@+id/button3"
         android:layout_width="137dp"
         android:layout_height="85dp"
-        android:onClick="matchesScreen"
         android:text="Messages"
         android:textSize="12sp"
         app:icon="@drawable/ic_baseline_message_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <Button
-        android:onClick="logoutUser"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        android:layout_width="119dp"
-        android:layout_height="61dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="sans-serif-light"
-        android:text="SignOut"
-        android:textColor="#FFEB3B"
-        android:textSize="18sp"
-        app:iconTint="#FFEB3B"
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="384dp"
+        android:layout_height="643dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:strokeColor="#FFEB3B" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <com.lorentzos.flingswipe.SwipeFlingAdapterView
-        android:id="@+id/frame"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:rotation_degrees="15.5"
-        tools:context=".MyActivity" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/recyclerView"
+            android:scrollbars="vertical">
+        </androidx.recyclerview.widget.RecyclerView>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
