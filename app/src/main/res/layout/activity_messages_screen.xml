@@ -10,15 +10,14 @@
 
     <TextView
         android:id="@+id/textView8"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="3dp"
+        android:layout_width="401dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintBottom_toTopOf="@+id/button5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button5"
@@ -26,13 +25,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:onClick="matchesScreen"
         android:text="Back"
         android:textColor="#FFEB3B"
         app:iconTint="#FFEB3B"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8"
         app:strokeColor="#FFEB3B" />
 
     <include
@@ -59,6 +57,43 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/usertext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="269dp"
+        android:layout_marginTop="94dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="503dp"
+        android:layout_weight="6"
+        android:background="@drawable/user_bubble"
+        android:padding="16dp"
+        android:text="Dummy bubble"
+        android:textColor="#000"
+        app:layout_constraintBottom_toTopOf="@+id/type_messages"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8"
+        tools:ignore="DuplicateIds,HardcodedText" />
+
+    <TextView
+        android:id="@+id/othertext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="131dp"
+        android:layout_marginEnd="269dp"
+        android:layout_marginBottom="418dp"
+        android:layout_weight="6"
+        android:background="@drawable/other_bubble"
+        android:padding="16dp"
+        android:text="Dummy bubble"
+        android:textColor="#000"
+        app:layout_constraintBottom_toTopOf="@+id/type_messages"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button5" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
