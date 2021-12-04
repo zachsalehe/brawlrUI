@@ -53,6 +53,7 @@ public class HomeScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         // super references AppCompatActivity
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_home);
 
         // saving the full list of users in a usersDb variable
