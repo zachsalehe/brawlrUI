@@ -29,7 +29,7 @@ import java.util.List;
  * this class will allow both user1 (client) and some user2 to enter messages
  * into a chat log.
  */
-public class MessageActivity extends AppCompatActivity implements View.OnClickListener{
+public class MessageActivity extends AppCompatActivity{
     /**
      * Instantiates a new database of the message history
      * for the current chat.
@@ -43,9 +43,6 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
     ImageButton send_btn;
     EditText text_message;
 
-
-
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messages_screen); //or chat screen
@@ -53,16 +50,16 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
         database = FirebaseDatabase.getInstance();
         reference = database.getReference();
         Toolbar toolbar = findViewById(R.id.toolbar);
-        //getSupportActionBar(toolbar);
-        //getSupportActionBar().setTitle("Meow");
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        /*
+        getSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Meow");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         toolbar.getNavigationOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                finish()
+                finish();
             }
-        })
-        */
+        });
+
 
         username = findViewById(R.id.username);
         intent = getIntent();
@@ -72,7 +69,7 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
         send_btn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                String msg = text_send.getText().toString();
+                String msg = text_message.getText().toString();
                 if (!msg.equals("")){
                     sendMessage(currentUserID, userid, msg);
                 }
@@ -104,5 +101,14 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
         hashMap.put("message", message);
 
         reference.child("Chats").push().setValue(hashMap);
+    }
+    public void homeScreen(View view){
+        Intent intent = new Intent(this, HomeScreen.class);
+        startActivity(intent);
+    }
+
+    public void profileScreen(View view){
+        Intent intent = new Intent(this, ProfileScreen.class);
+        startActivity(intent);
     }
 }

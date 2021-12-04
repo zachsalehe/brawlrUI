@@ -26,8 +26,4 @@ public class MessagesScreen extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void messagesScreen(View view){
-        Intent intent = new Intent(this, MessagesScreen.class);
-        startActivity(intent);
-    }
 }
