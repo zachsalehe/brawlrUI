@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/gradient"
-    android:onClick="matchesScreen">
+    android:background="@drawable/gradient">
 
 
     <androidx.appcompat.widget.Toolbar
@@ -43,44 +42,59 @@
 
 
     <Button
-        android:id="@+id/button5"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:onClick="matchesScreen"
-        android:text="@string/back"
-        android:textColor="#FFEB3B"
-        app:iconTint="#FFEB3B"
+        android:id="@+id/button"
+        android:layout_width="137dp"
+        android:layout_height="85dp"
+        android:onClick="profileScreen"
+        android:text="Profile"
+        android:textSize="16sp"
+        app:icon="@drawable/ic_baseline_person_24"
+        app:iconPadding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:strokeColor="#FFEB3B" />
+        app:layout_constraintTop_toBottomOf="@+id/type_messages" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="137dp"
+        android:layout_height="85dp"
+        android:onClick="homeScreen"
+        android:text="Home"
+        android:textSize="16sp"
+        app:icon="@drawable/ic_baseline_home_24"
+        app:iconPadding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button3"
+        app:layout_constraintStart_toEndOf="@+id/button"
+        app:layout_constraintTop_toBottomOf="@+id/type_messages"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="137dp"
+        android:layout_height="85dp"
+        android:onClick="messagesScreen"
+        android:text="Messages"
+        android:textSize="12sp"
+        app:icon="@drawable/ic_baseline_message_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button2"
+        app:layout_constraintTop_toBottomOf="@+id/type_messages" />
 
     <include
         android:id="@+id/type_messages"
         layout="@layout/messages_area"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="692dp"
+        android:layout_marginTop="600dp"
         android:layout_weight="1"
         android:gravity="bottom"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <Button
-        android:id="@+id/button9"
-        android:layout_width="74dp"
-        android:layout_height="45dp"
-        app:icon="@drawable/ic_baseline_send_24"
-        app:iconTint="#FFEB3B"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

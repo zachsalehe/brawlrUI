@@ -10,5 +10,4 @@
     <string name="home">home</string>
     <string name="profile">profile</string>
     <string name="swipe_left_to_right_and_right_to_left_to_detect_swipe_gesture">Swipe Left to right and Right to Left to detect Swipe Gesture</string>
-    <string name="back">Back</string>
 </resources>
