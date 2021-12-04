@@ -1,9 +1,11 @@
 package com.example.test2;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -22,6 +24,8 @@ import com.google.firebase.firestore.auth.User;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import static com.example.test2.R.id.button9;
 
 /**
  * Normally this should be a client-side-only class but because
@@ -42,7 +46,8 @@ public class MessageActivity extends AppCompatActivity {
     Intent intent;
     ImageButton send_btn;
     EditText text_message;
-
+    Button button;
+    TextView textView;
 
 
 
@@ -53,9 +58,6 @@ public class MessageActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         reference = database.getReference();
 
-        /**
-         * #TODO UI Components
-         */
         /*
         Toolbar toolbar = findViewById(R.id.toolbar);
         //getSupportActionBar(toolbar);
@@ -67,48 +69,21 @@ public class MessageActivity extends AppCompatActivity {
             }
         })
         */
-        /*
-        username = findViewById(R.id.username);
-        intent = getIntent();
-        String userid = intent.getStringExtra("userid");
+        button = findViewById(button9);
 
-        send_btn = findViewById(R.id.button);
-        send_btn.setOnClickListener(new View.OnClickListener(){
+        textView = findViewById(R.id.textView);
+        button.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
             @Override
-            public void onClick(View view){
-                String msg = text_send.getText().toString();
-                if (!msg.equals("")){
-                    sendMessage(currentUserID, userid, msg);
-                }
+            public void onClick(View v) {
+                textView.setText("button.setOnClickListener(new View.OnClickListener() code is working");
             }
         });
-
-         */
-        /**
-         * Creates an event listener, to allow to read changes to chat data and update the
-         * view accordingly
-         */
-        ValueEventListener postListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // Get Post object and use the values to update the UI
-                User user = dataSnapshot.getValue(User.class);
-                System.out.println(reference.child("Unit1"));
-                dataSnapshot.getValue(Message.class);
-                // ..
-            }
-
-            /**
-             * Error Message for chat
-             */
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // Getting Post failed, log a message
-                //Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
-                System.out.println("Error");
-            }
-        };
     }
+
+
+
+
 
     /**
      * Method to send messages from "sender" to "receiver" in database.
