@@ -6,13 +6,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.test2.matches.MatchesActivity;
+
 public class MessagesScreen extends AppCompatActivity {
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //getSupportActionBar().hide();
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_messages_screen);
     }
 
@@ -26,4 +28,8 @@ public class MessagesScreen extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void matchesScreen(View view){
+        Intent intent = new Intent(this, MatchesActivity.class);
+        startActivity(intent);
+    }
 }
