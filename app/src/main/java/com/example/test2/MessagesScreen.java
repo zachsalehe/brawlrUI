@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.test2.matches.MatchesActivity;
+
 public class MessagesScreen extends AppCompatActivity {
 
 
@@ -26,8 +28,8 @@ public class MessagesScreen extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void messagesScreen(View view){
-        Intent intent = new Intent(this, MessagesScreen.class);
+    public void matchesScreen(View view){
+        Intent intent = new Intent(this, MatchesActivity.class);
         startActivity(intent);
     }
 }

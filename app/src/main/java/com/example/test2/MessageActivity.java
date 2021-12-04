@@ -48,7 +48,7 @@ public class MessageActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_messages_screen); //or chat screen
+        setContentView(R.layout.activity_messages_screen);
         currentUserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         database = FirebaseDatabase.getInstance();
         reference = database.getReference();
@@ -94,7 +94,7 @@ public class MessageActivity extends AppCompatActivity {
                 // Get Post object and use the values to update the UI
                 User user = dataSnapshot.getValue(User.class);
                 System.out.println(reference.child("Unit1"));
-                dataSnapshot.getValue(Message.class);
+                dataSnapshot.getValue(Chat.class);
                 // ..
             }
 
@@ -124,4 +124,6 @@ public class MessageActivity extends AppCompatActivity {
 
         reference.child("Chats").push().setValue(hashMap);
     }
+
+
 }
