@@ -3,8 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@drawable/gradient">
+
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -26,7 +27,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <de.hdodenhof.circleimageview.CircleImageView
+    <!--<de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile_image"
         android:layout_width="96dp"
         android:layout_height="0dp"
@@ -36,23 +37,27 @@
         app:civ_border_width="2dp"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintStart_toStartOf="@+id/toolbar"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />-->
+
 
 
     <Button
         android:id="@+id/button"
-        android:layout_width="129dp"
-        android:layout_height="0dp"
+        android:layout_width="137dp"
+        android:layout_height="85dp"
         android:onClick="profileScreen"
         android:text="Profile"
+        android:textSize="16sp"
         app:icon="@drawable/ic_baseline_person_24"
+        app:iconPadding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_image" />
+        app:layout_constraintTop_toBottomOf="@+id/type_messages" />
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="138dp"
+        android:layout_width="137dp"
         android:layout_height="85dp"
         android:onClick="homeScreen"
         android:text="Home"
@@ -60,41 +65,36 @@
         app:icon="@drawable/ic_baseline_home_24"
         app:iconPadding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button3"
         app:layout_constraintStart_toEndOf="@+id/button"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
+        app:layout_constraintTop_toBottomOf="@+id/type_messages"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/button3"
-        android:layout_width="147dp"
-        android:layout_height="86dp"
+        android:layout_width="137dp"
+        android:layout_height="85dp"
+        android:onClick="messagesScreen"
         android:text="Messages"
         android:textSize="12sp"
         app:icon="@drawable/ic_baseline_message_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button2"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
+        app:layout_constraintTop_toBottomOf="@+id/type_messages" />
 
-    <ScrollView
-        android:id="@+id/scrollView2"
-        android:layout_width="384dp"
-        android:layout_height="643dp"
+    <include
+        android:id="@+id/type_messages"
+        layout="@layout/messages_area"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="600dp"
+        android:layout_weight="1"
+        android:gravity="bottom"
+        app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"></LinearLayout>
-
-         <EditText
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content">
-
-         </EditText>
-    </ScrollView>
-
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

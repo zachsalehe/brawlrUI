@@ -82,7 +82,7 @@ public class MessageActivity extends AppCompatActivity{
                 // Get Post object and use the values to update the UI
                 User user = dataSnapshot.getValue(User.class);
                 System.out.println(reference.child("Unit1"));
-                dataSnapshot.getValue(Chat.class);
+                dataSnapshot.getValue(Message.class);
                 // ..
             }
 
