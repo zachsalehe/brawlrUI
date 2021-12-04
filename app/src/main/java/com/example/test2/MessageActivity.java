@@ -37,6 +37,7 @@ public class MessageActivity extends AppCompatActivity{
      */
     ArrayList<String> history = new ArrayList<>();
     TextView username;
+    private String matchId;
     private String currentUserID;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference reference = database.getReference();
@@ -54,6 +55,7 @@ public class MessageActivity extends AppCompatActivity{
 
         username = findViewById(R.id.username);
         intent = getIntent();
+        matchId = intent.getStringExtra("matchID");
         String userid = intent.getStringExtra("userid");
 
         send_btn = findViewById(R.id.button9);
@@ -65,7 +67,7 @@ public class MessageActivity extends AppCompatActivity{
                 if (!msg.equals("")){
                     System.out.println(msg);
                     System.out.println("Yay it worked!");
-                    sendMessage(currentUserID, userid, msg);
+                    sendMessage(currentUserID, matchId, msg);
                 }
             }
         });
