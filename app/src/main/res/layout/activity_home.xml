@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/activity_main_constraintlayout"
     android:background="@drawable/gradient">
 
     <Button
@@ -42,13 +43,13 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:onClick="logoutUser"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        android:layout_width="119dp"
-        android:layout_height="61dp"
+        android:layout_width="127dp"
+        android:layout_height="60dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:fontFamily="sans-serif-light"
+        android:onClick="logoutUser"
         android:text="SignOut"
         android:textColor="#FFEB3B"
         android:textSize="18sp"
