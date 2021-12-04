@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -40,8 +41,9 @@ public class MessageActivity extends AppCompatActivity{
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference reference = database.getReference();
     Intent intent;
-    ImageButton send_btn;
+    Button send_btn;
     EditText text_message;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,12 +68,15 @@ public class MessageActivity extends AppCompatActivity{
         intent = getIntent();
         String userid = intent.getStringExtra("userid");
 
-        send_btn = findViewById(R.id.button);
+        send_btn = findViewById(R.id.button9);
+        text_message = findViewById(R.id.type_messages);
         send_btn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 String msg = text_message.getText().toString();
                 if (!msg.equals("")){
+                    System.out.println(msg);
+                    System.out.println("Yay it worked!");
                     sendMessage(currentUserID, userid, msg);
                 }
             }
@@ -83,7 +88,7 @@ public class MessageActivity extends AppCompatActivity{
                 // Get Post object and use the values to update the UI
                 User user = dataSnapshot.getValue(User.class);
                 System.out.println(reference.child("Unit1"));
-                dataSnapshot.getValue(Message.class);
+                dataSnapshot.getValue(Chat.class);
                 // ..
             }
 
