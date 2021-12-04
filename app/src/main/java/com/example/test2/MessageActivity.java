@@ -49,6 +49,7 @@ public class MessageActivity extends AppCompatActivity{
         currentUserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         database = FirebaseDatabase.getInstance();
         reference = database.getReference();
+        /**
         Toolbar toolbar = findViewById(R.id.toolbar);
         getSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Meow");
@@ -59,7 +60,7 @@ public class MessageActivity extends AppCompatActivity{
                 finish();
             }
         });
-
+        **/
 
         username = findViewById(R.id.username);
         intent = getIntent();
