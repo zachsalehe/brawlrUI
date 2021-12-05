@@ -4,14 +4,26 @@ public class Chat {
     private String sender;
     private String receiver;
     private String message;
+    private String chatID;
 
-    public Chat (String sender, String receiver, String message) {
+    public Chat(){
+
+    }
+
+    public Chat (String sender, String receiver, String message, String chatID) {
         this.sender = sender;
         this.receiver = receiver;
         this.message = message;
+        this.chatID = chatID;
     }
 
-    public Chat() {
+
+    public String getChatID() {
+        return chatID;
+    }
+
+    public void setChatID(String chatID) {
+        this.chatID = chatID;
     }
 
     public String getSender() {

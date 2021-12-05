@@ -31,6 +31,7 @@ public class MatchesActivity extends AppCompatActivity {
     private String currentUserID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        System.out.println("Yay!");
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_matches);
@@ -64,7 +65,7 @@ public class MatchesActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
+                System.out.println("Uh oh!");
             }
         });
     }

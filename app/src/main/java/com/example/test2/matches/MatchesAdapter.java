@@ -29,7 +29,7 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesViewHolders>{
         RecyclerView.LayoutParams lp = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         layoutView.setLayoutParams(lp);
         MatchesViewHolders rcv = new MatchesViewHolders(layoutView);
-
+        System.out.println("Yay2!");
         return rcv;
     }
 
