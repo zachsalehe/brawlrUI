@@ -14,8 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.test2.HomeScreen;
 import com.example.test2.ProfileScreen;
 import com.example.test2.R;
-import com.example.test2.matches.MatchesAdapter;
-import com.example.test2.matches.Chat;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,22 +26,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-/**
- * Normally this should be a client-side-only class but because
- * we're going for a pretty abstract implementation at the moment,
- * this class will allow both user1 (client) and some user2 to enter messages
- * into a chat log.
- */
 public class MessageActivity extends AppCompatActivity{
     /**
      * Instantiates a new database of the message history
      * for the current chat.
      */
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mMatchesAdapter;
-    private RecyclerView.LayoutManager mMatchesLayoutManager;
+    private RecyclerView.Adapter cChatAdapter;
+    private RecyclerView.LayoutManager cChatLayoutManager;
 
-    ArrayList<String> history = new ArrayList<>();
     TextView username;
     private String matchId;
     private String currentUserID;
@@ -53,7 +44,6 @@ public class MessageActivity extends AppCompatActivity{
     Button send_btn;
     EditText text_message;
 
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messages_screen); //or chat screen
@@ -61,14 +51,14 @@ public class MessageActivity extends AppCompatActivity{
         database = FirebaseDatabase.getInstance();
         reference = database.getReference();
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        mRecyclerView = (RecyclerView) findViewById(R.id.chatView);
         mRecyclerView.setNestedScrollingEnabled(false);
         mRecyclerView.setHasFixedSize(true);
 
-        mMatchesLayoutManager = new LinearLayoutManager(MessageActivity.this);
-        mRecyclerView.setLayoutManager(mMatchesLayoutManager);
-        mMatchesAdapter = new MatchesAdapter(getDataSetMatches(), MessageActivity.this);
-        mRecyclerView.setAdapter(mMatchesAdapter);
+        cChatLayoutManager = new LinearLayoutManager(MessageActivity.this);
+        mRecyclerView.setLayoutManager(cChatLayoutManager);
+        cChatAdapter = new ChatAdapter(currentUserID, getDataSetChat(), MessageActivity.this);
+        mRecyclerView.setAdapter(cChatAdapter);
 
         username = findViewById(R.id.username);
         intent = getIntent();
@@ -123,8 +113,9 @@ public class MessageActivity extends AppCompatActivity{
         Intent intent = new Intent(this, ProfileScreen.class);
         startActivity(intent);
     }
-    private ArrayList<Chat> resultsMatches = new ArrayList<Chat>();
-    private List<Chat> getDataSetMatches() {
-        return resultsMatches;
+
+    private ArrayList<Chat> resultsChats = new ArrayList<Chat>();
+    private List<Chat> getDataSetChat() {
+        return resultsChats;
     }
 }

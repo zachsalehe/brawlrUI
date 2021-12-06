@@ -14,10 +14,10 @@ import com.example.test2.R;
 import java.util.List;
 
 public class MatchesAdapter extends RecyclerView.Adapter<MatchesViewHolders>{
-    private List<Chat> matchesList;
+    private List<Match> matchesList;
     private Context context;
 
-    public MatchesAdapter(List<Chat> matchesList, Context context){
+    public MatchesAdapter(List<Match> matchesList, Context context){
         this.matchesList = matchesList;
         this.context = context;
     }

@@ -25,8 +25,8 @@ import java.util.List;
 public class MatchesActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mChatAdapter;
-    private RecyclerView.LayoutManager mChatLayoutManager;
+    private RecyclerView.Adapter mMatchAdapter;
+    private RecyclerView.LayoutManager mMatchLayoutManager;
 
     private String currentUserID;
     @Override
@@ -37,14 +37,14 @@ public class MatchesActivity extends AppCompatActivity {
 
         currentUserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        mRecyclerView = (RecyclerView) findViewById(R.id.matchView);
         mRecyclerView.setNestedScrollingEnabled(false);
         mRecyclerView.setHasFixedSize(true);
 
-        mChatLayoutManager = new LinearLayoutManager(MatchesActivity.this);
-        mRecyclerView.setLayoutManager(mChatLayoutManager);
-        mChatAdapter = new MatchesAdapter(getDataSetChat(), MatchesActivity.this);
-        mRecyclerView.setAdapter(mChatAdapter);
+        mMatchLayoutManager = new LinearLayoutManager(MatchesActivity.this);
+        mRecyclerView.setLayoutManager(mMatchLayoutManager);
+        mMatchAdapter = new MatchesAdapter(getDataSetMatch(), MatchesActivity.this);
+        mRecyclerView.setAdapter(mMatchAdapter);
 
         getUserMatchId();
     }
@@ -85,9 +85,9 @@ public class MatchesActivity extends AppCompatActivity {
                         profileImageUrl = dataSnapshot.child("profileImageUrl").getValue().toString();
                     }
 
-                    Chat obj = new Chat(userId, name, profileImageUrl);
-                    resultsChats.add(obj);
-                    mChatAdapter.notifyDataSetChanged();
+                    Match obj = new Match(userId, name, profileImageUrl);
+                    resultsMatches.add(obj);
+                    mMatchAdapter.notifyDataSetChanged();
                 }
             }
 
@@ -99,9 +99,9 @@ public class MatchesActivity extends AppCompatActivity {
 
     }
 
-    private ArrayList<Chat> resultsChats = new ArrayList<Chat>();
-    private List<Chat> getDataSetChat() {
-        return resultsChats;
+    private ArrayList<Match> resultsMatches = new ArrayList<Match>();
+    private List<Match> getDataSetMatch() {
+        return resultsMatches;
     }
 
     public void homeScreen(View view){

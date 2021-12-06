@@ -1,10 +1,10 @@
 package com.example.test2.matches;
 
-public class Chat {
+public class Match {
     private String userId;
     private String name;
     private String profileImageUrl;
-    public Chat(String userId, String name, String profileImageUrl){
+    public Match(String userId, String name, String profileImageUrl){
         this.userId = userId;
         this.name = name;
         this.profileImageUrl = profileImageUrl;

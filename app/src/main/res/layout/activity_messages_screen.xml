@@ -7,6 +7,22 @@
     android:background="@drawable/gradient"
     android:onClick="matchesScreen">
 
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="387dp"
+        android:layout_height="590dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/type_messages"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button5">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/chatView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"></androidx.recyclerview.widget.RecyclerView>
+    </androidx.core.widget.NestedScrollView>
 
     <TextView
         android:id="@+id/textView8"
