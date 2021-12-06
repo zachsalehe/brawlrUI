@@ -43,9 +43,6 @@ public class MessageActivity extends AppCompatActivity {
     ImageButton send_btn;
     EditText text_message;
 
-
-
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messages_screen); //or chat screen

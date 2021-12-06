@@ -184,7 +184,6 @@ public class HomeScreen extends AppCompatActivity {
      */
     public void getOtherUsers() {
         // creates a reference of the full list of users from the database
-        // TODO: cleaner way to pull users?
         DatabaseReference notUserDb = FirebaseDatabase.getInstance().getReference().child("Users");
 
         // adds event listeners to look for changes in the notUserDb database reference
