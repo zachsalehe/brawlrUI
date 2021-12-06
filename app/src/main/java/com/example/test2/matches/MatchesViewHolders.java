@@ -15,7 +15,7 @@ import com.example.test2.R;
 public class MatchesViewHolders extends RecyclerView.ViewHolder implements View.OnClickListener{
     public TextView mMatchId, mMatchName;
     public ImageView mMatchImage;
-    public Button mButton;
+
     public MatchesViewHolders(View itemView) {
         super(itemView);
         itemView.setOnClickListener(this);
