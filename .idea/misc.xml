@@ -30,14 +30,14 @@
         <entry key="..\:/Users/anred/AndroidStudioProjects/brawlr/app/src/main/res/menu/home_menu.xml" value="0.2713541666666667" />
         <entry key="..\:/Users/jdpug/AndroidStudioProjects/brawlrUI/app/src/main/res/layout/activity_home.xml" value="0.16102136529442418" />
         <entry key="..\:/Users/jdpug/AndroidStudioProjects/brawlrUI/app/src/main/res/layout/activity_messages_screen.xml" value="0.1" />
-        <entry key="..\:/Users/xing/AndroidStudioProjects/brawlrUI/app/src/main/res/layout/activity_home.xml" value="0.1671875" />
         <entry key="..\:/Users/xing/AndroidStudioProjects/brawlrUI/app/src/main/res/layout/activity_main.xml" value="0.1671875" />
-        <entry key="..\:/Users/xing/AndroidStudioProjects/brawlrUI/app/src/main/res/layout/activity_matches.xml" value="0.152" />
         <entry key="..\:/Users/xing/AndroidStudioProjects/brawlrUI/app/src/main/res/layout/activity_messages_screen.xml" value="0.176" />
-        <entry key="..\:/Users/xing/AndroidStudioProjects/brawlrUI/app/src/main/res/layout/item.xml" value="0.1671875" />
-        <entry key="..\:/Users/xing/AndroidStudioProjects/brawlrUI/app/src/main/res/layout/item_matches.xml" value="0.1671875" />
         <entry key="app/src/main/res/drawable/gradient.xml" value="0.25833333333333336" />
+        <entry key="app/src/main/res/drawable/other_bubble.xml" value="0.14791666666666667" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_messages_screen.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/item_chat.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/item_matches.xml" value="0.33" />
       </map>
     </option>
   </component>

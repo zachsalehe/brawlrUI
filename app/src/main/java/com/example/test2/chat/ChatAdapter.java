@@ -25,6 +25,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatViewHolders>{
     @NonNull
     @Override
     public ChatViewHolders onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        // TODO: create itemchat
         View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_chat, null, false); //we need to create an item_chat
         RecyclerView.LayoutParams lp = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         layoutView.setLayoutParams(lp);
@@ -36,6 +37,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatViewHolders>{
     @Override
     public void onBindViewHolder(@NonNull ChatViewHolders holder, int position) {
         holder.mMessage.setText(chatList.get(position).getMessage()); //if it is the user sending
+        // TODO: no need to manually modify color, simply change drawable bubble background
         if(chatList.get(position).getCurrentUser()){
             holder.mMessage.setGravity(Gravity.END);
             holder.mMessage.setBackgroundColor(Color.parseColor("#404040"));
