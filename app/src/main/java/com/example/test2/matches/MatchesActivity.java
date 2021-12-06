@@ -25,8 +25,8 @@ import java.util.List;
 public class MatchesActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mMatchesAdapter;
-    private RecyclerView.LayoutManager mMatchesLayoutManager;
+    private RecyclerView.Adapter mChatAdapter;
+    private RecyclerView.LayoutManager mChatLayoutManager;
 
     private String currentUserID;
     @Override
@@ -41,10 +41,10 @@ public class MatchesActivity extends AppCompatActivity {
         mRecyclerView.setNestedScrollingEnabled(false);
         mRecyclerView.setHasFixedSize(true);
 
-        mMatchesLayoutManager = new LinearLayoutManager(MatchesActivity.this);
-        mRecyclerView.setLayoutManager(mMatchesLayoutManager);
-        mMatchesAdapter = new MatchesAdapter(getDataSetMatches(), MatchesActivity.this);
-        mRecyclerView.setAdapter(mMatchesAdapter);
+        mChatLayoutManager = new LinearLayoutManager(MatchesActivity.this);
+        mRecyclerView.setLayoutManager(mChatLayoutManager);
+        mChatAdapter = new MatchesAdapter(getDataSetChat(), MatchesActivity.this);
+        mRecyclerView.setAdapter(mChatAdapter);
 
         getUserMatchId();
     }
@@ -85,9 +85,9 @@ public class MatchesActivity extends AppCompatActivity {
                         profileImageUrl = dataSnapshot.child("profileImageUrl").getValue().toString();
                     }
 
-                    MatchesObject obj = new MatchesObject(userId, name, profileImageUrl);
-                    resultsMatches.add(obj);
-                    mMatchesAdapter.notifyDataSetChanged();
+                    Chat obj = new Chat(userId, name, profileImageUrl);
+                    resultsChats.add(obj);
+                    mChatAdapter.notifyDataSetChanged();
                 }
             }
 
@@ -99,9 +99,9 @@ public class MatchesActivity extends AppCompatActivity {
 
     }
 
-    private ArrayList<MatchesObject> resultsMatches = new ArrayList<MatchesObject>();
-    private List<MatchesObject> getDataSetMatches() {
-        return resultsMatches;
+    private ArrayList<Chat> resultsChats = new ArrayList<Chat>();
+    private List<Chat> getDataSetChat() {
+        return resultsChats;
     }
 
     public void homeScreen(View view){

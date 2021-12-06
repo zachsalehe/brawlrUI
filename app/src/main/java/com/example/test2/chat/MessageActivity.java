@@ -1,17 +1,21 @@
-package com.example.test2;
+package com.example.test2.chat;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.test2.HomeScreen;
+import com.example.test2.ProfileScreen;
+import com.example.test2.R;
+import com.example.test2.matches.MatchesAdapter;
+import com.example.test2.matches.Chat;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -35,6 +39,10 @@ public class MessageActivity extends AppCompatActivity{
      * Instantiates a new database of the message history
      * for the current chat.
      */
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mMatchesAdapter;
+    private RecyclerView.LayoutManager mMatchesLayoutManager;
+
     ArrayList<String> history = new ArrayList<>();
     TextView username;
     private String matchId;
@@ -53,10 +61,18 @@ public class MessageActivity extends AppCompatActivity{
         database = FirebaseDatabase.getInstance();
         reference = database.getReference();
 
+        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        mRecyclerView.setNestedScrollingEnabled(false);
+        mRecyclerView.setHasFixedSize(true);
+
+        mMatchesLayoutManager = new LinearLayoutManager(MessageActivity.this);
+        mRecyclerView.setLayoutManager(mMatchesLayoutManager);
+        mMatchesAdapter = new MatchesAdapter(getDataSetMatches(), MessageActivity.this);
+        mRecyclerView.setAdapter(mMatchesAdapter);
+
         username = findViewById(R.id.username);
         intent = getIntent();
         matchId = intent.getStringExtra("matchID");
-        String userid = intent.getStringExtra("userid");
 
         send_btn = findViewById(R.id.button9);
         text_message = findViewById(R.id.type_messages);
@@ -78,7 +94,7 @@ public class MessageActivity extends AppCompatActivity{
                 // Get Post object and use the values to update the UI
                 User user = dataSnapshot.getValue(User.class);
                 System.out.println(reference.child("Unit1"));
-                dataSnapshot.getValue(Chat.class);
+                dataSnapshot.getValue(com.example.test2.chat.Chat.class);
                 // ..
             }
 
@@ -106,5 +122,9 @@ public class MessageActivity extends AppCompatActivity{
     public void profileScreen(View view){
         Intent intent = new Intent(this, ProfileScreen.class);
         startActivity(intent);
+    }
+    private ArrayList<Chat> resultsMatches = new ArrayList<Chat>();
+    private List<Chat> getDataSetMatches() {
+        return resultsMatches;
     }
 }

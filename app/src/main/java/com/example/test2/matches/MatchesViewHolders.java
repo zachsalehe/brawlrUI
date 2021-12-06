@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.test2.MessageActivity;
+import com.example.test2.chat.MessageActivity;
 import com.example.test2.R;
 
 public class MatchesViewHolders extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -24,7 +24,6 @@ public class MatchesViewHolders extends RecyclerView.ViewHolder implements View.
         mMatchName = (TextView) itemView.findViewById(R.id.MatchName);
 
         mMatchImage = (ImageView) itemView.findViewById(R.id.MatchImage);
-        mButton = (Button) itemView.findViewById(R.id.button4);
     }
 
     @Override

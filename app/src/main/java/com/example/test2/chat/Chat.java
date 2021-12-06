@@ -1,4 +1,4 @@
-package com.example.test2;
+package com.example.test2.chat;
 
 public class Chat {
     private String sender;

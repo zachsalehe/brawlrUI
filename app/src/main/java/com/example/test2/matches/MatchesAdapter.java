@@ -1,26 +1,23 @@
 package com.example.test2.matches;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.test2.MessageActivity;
 import com.example.test2.R;
 
 import java.util.List;
 
 public class MatchesAdapter extends RecyclerView.Adapter<MatchesViewHolders>{
-    private List<MatchesObject> matchesList;
+    private List<Chat> matchesList;
     private Context context;
 
-    public MatchesAdapter(List<MatchesObject> matchesList, Context context){
+    public MatchesAdapter(List<Chat> matchesList, Context context){
         this.matchesList = matchesList;
         this.context = context;
     }
@@ -44,15 +41,6 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesViewHolders>{
         if(!matchesList.get(position).getProfileImageUrl().equals("default")){
             Glide.with(context).load(matchesList.get(position).getProfileImageUrl()).into(holder.mMatchImage);
         }
-        Button texter = holder.mButton;
-        texter.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                Intent i = new Intent(context, MessageActivity.class);
-                i.putExtra("matchID", holder.mMatchId.getText());
-                //startActivity(i);
-            }
-        });
     }
 
     @Override
