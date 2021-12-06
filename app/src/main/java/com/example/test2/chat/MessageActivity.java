@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.test2.HomeScreen;
 import com.example.test2.ProfileScreen;
 import com.example.test2.R;
+import com.example.test2.matches.MatchesActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -65,7 +66,7 @@ public class MessageActivity extends AppCompatActivity{
         matchId = intent.getStringExtra("matchID");
 
         send_btn = findViewById(R.id.button9);
-        text_message = findViewById(R.id.type_messages);
+        text_message = findViewById(R.id.chatField);
         send_btn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
@@ -114,8 +115,14 @@ public class MessageActivity extends AppCompatActivity{
         startActivity(intent);
     }
 
+    public void matchesScreen(View view) {
+        Intent intent = new Intent(this, MatchesActivity.class);
+        startActivity(intent);
+    }
+
     private ArrayList<Chat> resultsChats = new ArrayList<Chat>();
     private List<Chat> getDataSetChat() {
         return resultsChats;
     }
+
 }
