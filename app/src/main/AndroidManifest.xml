@@ -17,8 +17,8 @@
             android:name=".matches.MatchesActivity"
             android:exported="false" />
         <activity
-            android:name=".MessagesScreen"
-            android:exported="true" />
+            android:name=".chat.MessageActivity"
+            android:exported="false" />
         <activity
             android:name=".ProfileScreen"
             android:exported="true" />

@@ -25,8 +25,8 @@ import java.util.List;
 public class MatchesActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mMatchesAdapter;
-    private RecyclerView.LayoutManager mMatchesLayoutManager;
+    private RecyclerView.Adapter mMatchAdapter;
+    private RecyclerView.LayoutManager mMatchLayoutManager;
 
     private String currentUserID;
     @Override
@@ -38,14 +38,14 @@ public class MatchesActivity extends AppCompatActivity {
 
         currentUserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        mRecyclerView = (RecyclerView) findViewById(R.id.matchView);
         mRecyclerView.setNestedScrollingEnabled(false);
         mRecyclerView.setHasFixedSize(true);
 
-        mMatchesLayoutManager = new LinearLayoutManager(MatchesActivity.this);
-        mRecyclerView.setLayoutManager(mMatchesLayoutManager);
-        mMatchesAdapter = new MatchesAdapter(getDataSetMatches(), MatchesActivity.this);
-        mRecyclerView.setAdapter(mMatchesAdapter);
+        mMatchLayoutManager = new LinearLayoutManager(MatchesActivity.this);
+        mRecyclerView.setLayoutManager(mMatchLayoutManager);
+        mMatchAdapter = new MatchesAdapter(getDataSetMatch(), MatchesActivity.this);
+        mRecyclerView.setAdapter(mMatchAdapter);
 
         getUserMatchId();
     }
@@ -86,9 +86,9 @@ public class MatchesActivity extends AppCompatActivity {
                         profileImageUrl = dataSnapshot.child("profileImageUrl").getValue().toString();
                     }
 
-                    MatchesObject obj = new MatchesObject(userId, name, profileImageUrl);
+                    Match obj = new Match(userId, name, profileImageUrl);
                     resultsMatches.add(obj);
-                    mMatchesAdapter.notifyDataSetChanged();
+                    mMatchAdapter.notifyDataSetChanged();
                 }
             }
 
@@ -100,8 +100,8 @@ public class MatchesActivity extends AppCompatActivity {
 
     }
 
-    private ArrayList<MatchesObject> resultsMatches = new ArrayList<MatchesObject>();
-    private List<MatchesObject> getDataSetMatches() {
+    private ArrayList<Match> resultsMatches = new ArrayList<Match>();
+    private List<Match> getDataSetMatch() {
         return resultsMatches;
     }
 

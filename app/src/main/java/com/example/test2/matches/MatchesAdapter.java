@@ -14,10 +14,10 @@ import com.example.test2.R;
 import java.util.List;
 
 public class MatchesAdapter extends RecyclerView.Adapter<MatchesViewHolders>{
-    private List<MatchesObject> matchesList;
+    private List<Match> matchesList;
     private Context context;
 
-    public MatchesAdapter(List<MatchesObject> matchesList, Context context){
+    public MatchesAdapter(List<Match> matchesList, Context context){
         this.matchesList = matchesList;
         this.context = context;
     }
@@ -37,6 +37,7 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesViewHolders>{
     public void onBindViewHolder(@NonNull MatchesViewHolders holder, int position) {
         holder.mMatchId.setText(matchesList.get(position).getUserId());
         holder.mMatchName.setText(matchesList.get(position).getName());
+
         if(!matchesList.get(position).getProfileImageUrl().equals("default")){
             Glide.with(context).load(matchesList.get(position).getProfileImageUrl()).into(holder.mMatchImage);
         }
