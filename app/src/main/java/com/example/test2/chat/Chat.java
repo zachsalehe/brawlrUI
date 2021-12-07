@@ -17,5 +17,7 @@ public class Chat {
         return message;
     }
 
+    public String getSender(){return sender;}
+
     public boolean isCurrentUser() { return currentUser; }
 }
