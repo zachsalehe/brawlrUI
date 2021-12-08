@@ -27,6 +27,7 @@ public class SignInScreen extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthStateListener;
+    public boolean isSignedIn = false;
 
     /**
      * sets up the screen and connects the view to the real time database and does user sign
@@ -75,7 +76,7 @@ public class SignInScreen extends AppCompatActivity {
      * @param username the username
      * @param password the password
      */
-    private void signIn(String username, String password){
+    protected void signIn(String username, String password){
         if (username.equals("") || password.equals("")) {
             Toast.makeText(SignInScreen.this, "sign up error", Toast.LENGTH_SHORT).show();
             return;
@@ -85,6 +86,9 @@ public class SignInScreen extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(!task.isSuccessful()) {
                     Toast.makeText(SignInScreen.this, "sign up error", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    isSignedIn = true;
                 }
             }
         });

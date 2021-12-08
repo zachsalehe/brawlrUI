@@ -36,6 +36,7 @@ public class HomeScreen extends AppCompatActivity {
     private cards cards_data[];
     private com.example.test2.cards.arrayAdapter arrayAdapter;
     private int i;
+    public boolean matchSuccess = false;
 
     private FirebaseAuth mAuth;
     private String currentUid;
@@ -149,7 +150,7 @@ public class HomeScreen extends AppCompatActivity {
      * table.
      * @param userId the id of the user that has just been matched with
      */
-    private void isMatch(String userId) {
+    protected void isMatch(String userId) {
         DatabaseReference currentUserConnectionsDb = usersDb.child(currentUid).child("connections").child("yes").child(userId);
         currentUserConnectionsDb.addListenerForSingleValueEvent(new ValueEventListener() {
             /**
@@ -165,6 +166,7 @@ public class HomeScreen extends AppCompatActivity {
 
                     usersDb.child(snapshot.getKey()).child("connections").child("matches").child(currentUid).child("ChatId").setValue(key);
                     usersDb.child(currentUid).child("connections").child("matches").child(snapshot.getKey()).child("ChatId").setValue(key);
+                    matchSuccess = true;
                 }
             }
 
@@ -230,6 +232,9 @@ public class HomeScreen extends AppCompatActivity {
         });
     }
 
+    protected void setCurrentUid(String currentID){
+        currentUid = currentID;
+    }
     /**
      * Intent tells the app to go to the home screen.
      * @param view the home screen view

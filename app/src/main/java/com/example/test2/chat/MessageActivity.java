@@ -37,6 +37,8 @@ import java.util.List;
 public class MessageActivity extends AppCompatActivity{
 
     private RecyclerView.Adapter cChatAdapter;
+    public boolean sendSuccess = false;
+    public boolean recieveSuccess = false;
 
     TextView username;
     private String matchID, currentUserID;
@@ -97,19 +99,24 @@ public class MessageActivity extends AppCompatActivity{
      * @param receiver user recieving the message
      * @param message the message
      */
-    private void sendMessage(String sender, String receiver, String message){
+    protected void sendMessage(String sender, String receiver, String message){
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("sender", sender);
         hashMap.put("receiver", receiver);
         hashMap.put("message", message);
 
-        mDatabaseChat.push().setValue(hashMap);
+        try {
+            mDatabaseChat.push().setValue(hashMap);
+        } catch (Exception e){
+            sendSuccess = true;
+        }
+
     }
 
     /**
      * retrieves chat messages
      */
-    private void getChatMessages() {
+    protected void getChatMessages() {
         mDatabaseChat.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
@@ -137,9 +144,11 @@ public class MessageActivity extends AppCompatActivity{
                         Chat newMessage = new Chat(sender, receiver, message, isCurrentUser);
                         resultsChats.add(newMessage);
                         cChatAdapter.notifyDataSetChanged();
+                        recieveSuccess = true;
                     }
                 } else {
                     System.out.println("bbed 2message");
+                    recieveSuccess = false;
                 }
             }
 
@@ -163,6 +172,10 @@ public class MessageActivity extends AppCompatActivity{
 
             }
         });
+    }
+
+    public void setCurrentUserID(String currentUserID) {
+        this.currentUserID = currentUserID;
     }
 
     /**

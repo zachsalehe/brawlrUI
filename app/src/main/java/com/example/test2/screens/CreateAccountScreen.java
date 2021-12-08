@@ -29,8 +29,8 @@ import java.util.Map;
  */
 public class CreateAccountScreen extends AppCompatActivity {
 
-    private Button mRegister;
     private EditText mEmail, mPassword, mCPassword, mName;
+    public boolean signupSuccess = false;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthStateListener;
@@ -66,7 +66,7 @@ public class CreateAccountScreen extends AppCompatActivity {
             }
         };
 
-        mRegister = (Button) findViewById(R.id.goSignIn2);
+        Button mRegister = (Button) findViewById(R.id.goSignIn2);
 
         mEmail = (EditText) findViewById(R.id.username3);
         mPassword = (EditText) findViewById(R.id.password2);
@@ -98,7 +98,7 @@ public class CreateAccountScreen extends AppCompatActivity {
      * @param password the password
      * @param email the email adress
      */
-    private void createAccount(String name, String cPassword, String password,String email){
+    protected void createAccount(String name, String cPassword, String password,String email){
         if (name.equals("") || password.equals("") || email.equals("") || !password.equals(cPassword)) {
             Toast.makeText(CreateAccountScreen.this, "sign up error", Toast.LENGTH_SHORT).show();
             return;
@@ -121,6 +121,7 @@ public class CreateAccountScreen extends AppCompatActivity {
                     userInfo.put("profileImageUrl", "default");
                     currentUserDb2.setValue(true);
                     currentUserDb.updateChildren(userInfo);
+                    signupSuccess = true;
                 }
             }
         });
