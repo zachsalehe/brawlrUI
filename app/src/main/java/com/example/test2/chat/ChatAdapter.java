@@ -44,7 +44,6 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatViewHolders>{
         if(chatList.get(position).isCurrentUser()){
             holder.mContainer.setGravity(Gravity.RIGHT);
             holder.mMessage.setGravity(Gravity.END);
-
             holder.mMessage.setBackground(clientUserBubble);
         }else{
             holder.mContainer.setGravity(Gravity.LEFT);
