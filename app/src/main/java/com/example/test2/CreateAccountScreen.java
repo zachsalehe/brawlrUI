@@ -44,7 +44,6 @@ public class CreateAccountScreen extends AppCompatActivity {
                     Intent intent = new Intent(CreateAccountScreen.this, HomeScreen.class);
                     startActivity(intent);
                     finish();
-                    return;
                 }
             }
         };
@@ -76,14 +75,11 @@ public class CreateAccountScreen extends AppCompatActivity {
                             String userId = mAuth.getCurrentUser().getUid();
                             DatabaseReference currentUserDb = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
                             DatabaseReference currentUserDb2 = FirebaseDatabase.getInstance().getReference().child("Users").child(userId).child("connections").child("no").child(userId);
-                            Map userInfo = new HashMap<>();
+                            HashMap<String, Object> userInfo = new HashMap<>();
                             userInfo.put("name", name);
                             userInfo.put("profileImageUrl", "default");
                             currentUserDb2.setValue(true);
                             currentUserDb.updateChildren(userInfo);
-
-
-
                         }
                     }
                 });
