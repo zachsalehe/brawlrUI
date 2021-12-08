@@ -20,4 +20,6 @@ public class Chat {
     public String getSender(){return sender;}
 
     public boolean isCurrentUser() { return currentUser; }
+
+    public void setCurrentUser(Boolean currentUser){ this.currentUser = currentUser; }
 }

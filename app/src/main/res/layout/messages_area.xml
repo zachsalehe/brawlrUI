@@ -11,14 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:background="@drawable/gradient"
         android:hint="Write a message"
+        android:minHeight="32dp"
         android:textColor="#CFD8DC"
         android:textColorHint="#CFD8DC" />
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="5"
-        android:padding="4dp"
-        android:src="@android:drawable/ic_menu_send" />
 </LinearLayout>
