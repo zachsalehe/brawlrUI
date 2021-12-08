@@ -23,7 +23,6 @@ import com.google.firebase.auth.FirebaseUser;
  */
 public class SignInScreen extends AppCompatActivity {
 
-    private Button mRegister;
     private EditText mEmail, mPassword;
 
     private FirebaseAuth mAuth;
@@ -52,12 +51,11 @@ public class SignInScreen extends AppCompatActivity {
                     Intent intent = new Intent(SignInScreen.this, HomeScreen.class);
                     startActivity(intent);
                     finish();
-                    return;
                 }
             }
         };
 
-        mRegister = (Button) findViewById(R.id.goSignIn);
+        Button mRegister = (Button) findViewById(R.id.goSignIn);
 
         mEmail = (EditText) findViewById(R.id.username);
         mPassword = (EditText) findViewById(R.id.password);
@@ -67,18 +65,27 @@ public class SignInScreen extends AppCompatActivity {
             public void onClick(View view) {
                 final String username = mEmail.getText().toString();
                 final String password = mPassword.getText().toString();
-                if (username.equals("") || password.equals("")) {
+                signIn(username, password);
+            }
+        });
+    }
+
+    /**
+     * This method is used to sign in the user
+     * @param username the username
+     * @param password the password
+     */
+    private void signIn(String username, String password){
+        if (username.equals("") || password.equals("")) {
+            Toast.makeText(SignInScreen.this, "sign up error", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        mAuth.signInWithEmailAndPassword(username, password).addOnCompleteListener(SignInScreen.this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(!task.isSuccessful()) {
                     Toast.makeText(SignInScreen.this, "sign up error", Toast.LENGTH_SHORT).show();
-                    return;
                 }
-                mAuth.signInWithEmailAndPassword(username, password).addOnCompleteListener(SignInScreen.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(!task.isSuccessful()) {
-                            Toast.makeText(SignInScreen.this, "sign up error", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
             }
         });
     }

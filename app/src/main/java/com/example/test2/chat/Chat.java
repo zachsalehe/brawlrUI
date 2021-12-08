@@ -4,10 +4,9 @@ package com.example.test2.chat;
  * a chat object that is used to represent our chats
  */
 public class Chat {
-    private String sender;
-    private String receiver;
-    private String message;
-    private boolean currentUser;
+    private final String sender;
+    private final String message;
+    private final boolean currentUser;
 
     /**
      * constructor
@@ -18,7 +17,6 @@ public class Chat {
      */
     public Chat (String sender, String receiver, String message, boolean currentUser) {
         this.sender = sender;
-        this.receiver = receiver;
         this.message = message;
         this.currentUser = currentUser;
     }

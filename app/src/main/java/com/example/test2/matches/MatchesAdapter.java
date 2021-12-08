@@ -18,8 +18,8 @@ import java.util.List;
  * display chat thumbnails
  */
 public class MatchesAdapter extends RecyclerView.Adapter<MatchesViewHolders>{
-    private List<Match> matchesList;
-    private Context context;
+    private final List<Match> matchesList;
+    private final Context context;
 
     public MatchesAdapter(List<Match> matchesList, Context context){
         this.matchesList = matchesList;

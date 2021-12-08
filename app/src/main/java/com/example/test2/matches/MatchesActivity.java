@@ -30,9 +30,7 @@ import java.util.List;
  */
 public class MatchesActivity extends AppCompatActivity {
 
-    private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mMatchAdapter;
-    private RecyclerView.LayoutManager mMatchLayoutManager;
 
     private String currentUserID;
 
@@ -49,11 +47,11 @@ public class MatchesActivity extends AppCompatActivity {
 
         currentUserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.matchView);
+        RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.matchView);
         mRecyclerView.setNestedScrollingEnabled(false);
         mRecyclerView.setHasFixedSize(true);
 
-        mMatchLayoutManager = new LinearLayoutManager(MatchesActivity.this);
+        RecyclerView.LayoutManager mMatchLayoutManager = new LinearLayoutManager(MatchesActivity.this);
         mRecyclerView.setLayoutManager(mMatchLayoutManager);
         mMatchAdapter = new MatchesAdapter(getDataSetMatch(), MatchesActivity.this);
         mRecyclerView.setAdapter(mMatchAdapter);
@@ -120,7 +118,7 @@ public class MatchesActivity extends AppCompatActivity {
 
     }
 
-    private ArrayList<Match> resultsMatches = new ArrayList<Match>();
+    private final ArrayList<Match> resultsMatches = new ArrayList<Match>();
     private List<Match> getDataSetMatch() {
         return resultsMatches;
     }

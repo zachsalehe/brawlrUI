@@ -63,24 +63,17 @@ public class HomeScreen extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_home);
 
-        // saving the full list of users in a usersDb variable
         usersDb = FirebaseDatabase.getInstance().getReference().child("Users");
 
-        // authenticating current client user and grabbing client's user ID in currentUid
         mAuth = FirebaseAuth.getInstance();
         currentUid = mAuth.getCurrentUser().getUid();
 
-        // Adds all users in the database who are not the current client user into the
-        // rowItems array to be displayed for swiping.
         getOtherUsers();
 
-        // this is where arrayAdapter will get the raw user information from
         rowItems = new ArrayList<cards>();
 
-        // the swipe feed will be grabbing card info from the arrayAdapter
         arrayAdapter = new arrayAdapter(this, R.layout.item, rowItems );
 
-        // sets up a container that contains the cards
         SwipeFlingAdapterView flingContainer = (SwipeFlingAdapterView) findViewById(R.id.frame);
 
         flingContainer.setAdapter(arrayAdapter);
@@ -142,7 +135,6 @@ public class HomeScreen extends AppCompatActivity {
             }
         });
 
-//         Listener to indicate that the card has been clicked on.
         flingContainer.setOnItemClickListener(new SwipeFlingAdapterView.OnItemClickListener() {
             @Override
             public void onItemClicked(int itemPosition, Object dataObject) {
@@ -190,14 +182,10 @@ public class HomeScreen extends AppCompatActivity {
      *
      */
     public void getOtherUsers() {
-        // creates a reference of the full list of users from the database
         DatabaseReference notUserDb = FirebaseDatabase.getInstance().getReference().child("Users");
 
-        // adds event listeners to look for changes in the notUserDb database reference
         notUserDb.addChildEventListener(new ChildEventListener() {
             @Override
-//             onChildAdded() will add any newly added user into the client user's swiping cards
-//             list.
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 if (snapshot.exists() && !snapshot.child("connections").child("no").hasChild(currentUid) && !snapshot.child("connections").child("yes").hasChild(currentUid)) {
                     String profileImageUrl = "default";
@@ -211,10 +199,10 @@ public class HomeScreen extends AppCompatActivity {
             }
 
             /**
-             * TODO: It would be nice to do something with onChildChanged to ensure only updated
-             * account information is displayed in the swipe feed.
-             * @param snapshot
-             * @param previousChildName
+             * account information is displayed in the swipe feed. Although these methods are not implemented
+             * they are required to exist to add a childEventListener
+             * @param snapshot a database snapshot
+             * @param previousChildName the name of the previous card
              */
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
@@ -222,9 +210,8 @@ public class HomeScreen extends AppCompatActivity {
             }
 
             /**
-             * TODO: It'd probably be nice to do something with onChildRemoved to make sure
              * deleted accounts can no longer show up in the swiping feed.
-             * @param snapshot
+             * @param snapshot a snapshot of the database
              */
             @Override
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {

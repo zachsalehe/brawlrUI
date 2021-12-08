@@ -15,37 +15,21 @@ import com.example.test2.R;
  * document for as to why we made it this way
  */
 public class MainActivityScreen extends AppCompatActivity {
-
-    private Button mLogin, mRegister;
-
+    /**
+     * sets the content view and hides the action bar to make the view prettier
+     * @param savedInstanceState saved instance if the user closes the app
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
-
-        mLogin = (Button) findViewById(R.id.signIn);
-        mRegister = (Button) findViewById(R.id.createAccount);
-
-        mLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivityScreen.this, SignInScreen.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        mRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivityScreen.this, CreateAccountScreen.class);
-                startActivity(intent);
-                finish();
-            }
-        });
     }
 
+    /**
+     * methods to get to the sign in and sign up screen
+     * @param view the sign in or sign up view
+     */
     public void createAccountScreen(View view){
         Intent intent = new Intent(this, CreateAccountScreen.class);
         startActivity(intent);

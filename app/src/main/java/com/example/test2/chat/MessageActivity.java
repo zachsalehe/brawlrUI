@@ -36,15 +36,13 @@ import java.util.List;
  */
 public class MessageActivity extends AppCompatActivity{
 
-    private RecyclerView mRecyclerView;
     private RecyclerView.Adapter cChatAdapter;
-    private RecyclerView.LayoutManager cChatLayoutManager;
 
     TextView username;
     private String matchID, currentUserID;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private DatabaseReference reference = database.getReference();
-    private DatabaseReference mDatabaseUser, mDatabaseChat;
+    private final DatabaseReference reference = database.getReference();
+    private DatabaseReference mDatabaseChat;
     Intent intent;
     Button send_btn;
     EditText text_message;
@@ -62,16 +60,16 @@ public class MessageActivity extends AppCompatActivity{
 
         matchID = getIntent().getExtras().getString("matchID");
 
-        mDatabaseUser = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserID).child("connections").child("matches").child(matchID).child("ChatId");
+        DatabaseReference mDatabaseUser = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserID).child("connections").child("matches").child(matchID).child("ChatId");
         mDatabaseChat = FirebaseDatabase.getInstance().getReference().child("Chats");
 
         getChatMessages();
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.chatView);
+        RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.chatView);
         mRecyclerView.setNestedScrollingEnabled(false);
         mRecyclerView.setHasFixedSize(false);
 
-        cChatLayoutManager = new LinearLayoutManager(MessageActivity.this);
+        RecyclerView.LayoutManager cChatLayoutManager = new LinearLayoutManager(MessageActivity.this);
         mRecyclerView.setLayoutManager(cChatLayoutManager);
         cChatAdapter = new ChatAdapter(getDataSetChat(), MessageActivity.this);
         mRecyclerView.setAdapter(cChatAdapter);
@@ -132,7 +130,7 @@ public class MessageActivity extends AppCompatActivity{
                         receiver = snapshot.child("receiver").getValue().toString();
                     }
                     if (message != null && sender != null && receiver != null) {
-                        Boolean isCurrentUser = false;
+                        boolean isCurrentUser = false;
                         if (sender.equals(currentUserID)) {
                             isCurrentUser = true;
                         }
@@ -186,7 +184,7 @@ public class MessageActivity extends AppCompatActivity{
         startActivity(intent);
     }
 
-    private ArrayList<Chat> resultsChats = new ArrayList<Chat>();
+    private final ArrayList<Chat> resultsChats = new ArrayList<Chat>();
     private List<Chat> getDataSetChat() {
         return resultsChats;
     }

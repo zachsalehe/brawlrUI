@@ -47,10 +47,8 @@ import java.util.Map;
 public class ProfileScreen extends AppCompatActivity {
 
     private EditText mNameField, mFightingStyleField, mWeightField, mHeightField, mBiographyField, mControversialField;
-    private Button mConfirm;
     private ImageView mProfileImage;
 
-    private FirebaseAuth mAuth;
     private DatabaseReference mUserDatabase;
 
     private String userId, name, style, weight, height, biography, opinion, profileImageUrl;
@@ -78,9 +76,9 @@ public class ProfileScreen extends AppCompatActivity {
 
         mProfileImage = (ImageView) findViewById(R.id.profileImage);
 
-        mConfirm = (Button) findViewById(R.id.confirm);
+        Button mConfirm = (Button) findViewById(R.id.confirm);
 
-        mAuth = FirebaseAuth.getInstance();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
         userId = mAuth.getCurrentUser().getUid();
 
         mUserDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
@@ -93,11 +91,8 @@ public class ProfileScreen extends AppCompatActivity {
                     @Override
                     public void onActivityResult(ActivityResult result) {
                         if (result.getResultCode() == Activity.RESULT_OK) {
-                            // There are no request codes
                             Intent data = result.getData();
-//                            doSomeOperations();
-                            final Uri imageUri = data.getData();
-                            resultUri = imageUri;
+                            resultUri = data.getData();
                             mProfileImage.setImageURI(resultUri);
                         }
                     }
@@ -109,7 +104,6 @@ public class ProfileScreen extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_PICK);
                 intent.setType("image/*");
-//                startActivityForResult(intent, 1);
                 onActivityResultLauncher.launch(intent);
             }
         });
@@ -161,14 +155,10 @@ public class ProfileScreen extends AppCompatActivity {
                     Glide.clear(mProfileImage);
                     if(map.get("profileImageUrl")!=null){
                         profileImageUrl = map.get("profileImageUrl").toString();
-                        switch(profileImageUrl){
-                            case "default":
-//                                Glide.with(getApplication()).load(R.mipmap.ic_launcher).into(mProfileImage);
-                                mProfileImage.setImageResource(R.mipmap.ic_launcher);
-                                break;
-                            default:
-                                Glide.with(getApplication()).load(profileImageUrl).into(mProfileImage);
-                                break;
+                        if ("default".equals(profileImageUrl)) {
+                            mProfileImage.setImageResource(R.mipmap.ic_launcher);
+                        } else {
+                            Glide.with(getApplication()).load(profileImageUrl).into(mProfileImage);
                         }
                     }
                 }

@@ -8,7 +8,7 @@ import android.view.View;
  * part of UI this class is responsible for tracking swipes on the app
  */
 class OnSwipeTouchListener implements View.OnTouchListener {
-    private GestureDetector gestureDetector;
+    private final GestureDetector gestureDetector;
     OnSwipeTouchListener(Context c) {
         gestureDetector = new GestureDetector(c, new GestureListener());
     }

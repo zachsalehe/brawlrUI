@@ -28,9 +28,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
  */
 public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.MessageViewHolder>
 {
-    private List<Chat> userMessagesList;
+    private final List<Chat> userMessagesList;
     private FirebaseAuth mAuth;
-    private DatabaseReference usersRef;
 
     /**
      * constructor for the message adapter
@@ -45,7 +44,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
     /**
      * it creates a view holder for our messages and connects it to our view
      */
-    public class MessageViewHolder extends RecyclerView.ViewHolder
+    public static class MessageViewHolder extends RecyclerView.ViewHolder
     {
         public TextView senderMessageText, receiverMessageText;
         public CircleImageView receiverProfileImage;
@@ -57,9 +56,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
             super(itemView);
 
             senderMessageText = (TextView) itemView.findViewById(R.id.username);
-            //replace username with sender_message_text or something similar, needs to be done within firebase I believe
             receiverMessageText = (TextView) itemView.findViewById(R.id.username2);
-            //receiver_message_text
         }
     }
 
@@ -98,7 +95,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
 
         String fromUserID = chat.getSender();
 
-        usersRef = FirebaseDatabase.getInstance().getReference().child("Users").child(fromUserID);
+        DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference().child("Users").child(fromUserID);
 
         usersRef.addValueEventListener(new ValueEventListener() {
             @Override

@@ -84,34 +84,44 @@ public class CreateAccountScreen extends AppCompatActivity {
                 final String password = mPassword.getText().toString();
                 final String cPassword = mCPassword.getText().toString();
                 final String name = mName.getText().toString();
-                if (name.equals("") || password.equals("") || email.equals("") || !password.equals(cPassword)) {
+                createAccount(email, cPassword, password, email);
+            }
+        });
+    }
+
+    /**
+     * this method is responsible for creating accounts on the database, although it goes against
+     * the single responsiblity principle we need it to be in this view so it can change data on
+     * the app as sson as there are changes
+     * @param name the name of the user
+     * @param cPassword the check password
+     * @param password the password
+     * @param email the email adress
+     */
+    private void createAccount(String name, String cPassword, String password,String email){
+        if (name.equals("") || password.equals("") || email.equals("") || !password.equals(cPassword)) {
+            Toast.makeText(CreateAccountScreen.this, "sign up error", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(CreateAccountScreen.this, new OnCompleteListener<AuthResult>() {
+            /**
+             * this checks that our user was successfully created.
+             * @param task the task that the database should do
+             */
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(!task.isSuccessful()) {
                     Toast.makeText(CreateAccountScreen.this, "sign up error", Toast.LENGTH_SHORT).show();
-                    return;
+                }else{
+                    String userId = mAuth.getCurrentUser().getUid();
+                    DatabaseReference currentUserDb = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
+                    DatabaseReference currentUserDb2 = FirebaseDatabase.getInstance().getReference().child("Users").child(userId).child("connections").child("no").child(userId);
+                    Map userInfo = new HashMap<>();
+                    userInfo.put("name", name);
+                    userInfo.put("profileImageUrl", "default");
+                    currentUserDb2.setValue(true);
+                    currentUserDb.updateChildren(userInfo);
                 }
-                mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(CreateAccountScreen.this, new OnCompleteListener<AuthResult>() {
-                    /**
-                     * this checks that our user was successfully created.
-                     * @param task
-                     */
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(!task.isSuccessful()) {
-                            Toast.makeText(CreateAccountScreen.this, "sign up error", Toast.LENGTH_SHORT).show();
-                        }else{
-                            String userId = mAuth.getCurrentUser().getUid();
-                            DatabaseReference currentUserDb = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
-                            DatabaseReference currentUserDb2 = FirebaseDatabase.getInstance().getReference().child("Users").child(userId).child("connections").child("no").child(userId);
-                            Map userInfo = new HashMap<>();
-                            userInfo.put("name", name);
-                            userInfo.put("profileImageUrl", "default");
-                            currentUserDb2.setValue(true);
-                            currentUserDb.updateChildren(userInfo);
-
-
-
-                        }
-                    }
-                });
             }
         });
     }
