@@ -31,7 +31,6 @@ public class MatchesActivity extends AppCompatActivity {
     private String currentUserID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        System.out.println("Yay!");
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_matches);

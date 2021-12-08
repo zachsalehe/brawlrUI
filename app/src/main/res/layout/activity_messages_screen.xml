@@ -7,22 +7,34 @@
     android:background="@drawable/gradient"
     android:onClick="matchesScreen">
 
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="387dp"
-        android:layout_height="590dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="12dp"
-        app:layout_constraintBottom_toTopOf="@+id/type_messages"
+    <Button
+        android:id="@+id/button5"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="307dp"
+        android:layout_marginBottom="19dp"
+        android:onClick="matchesScreen"
+        android:text="Back"
+        android:textColor="#FFEB3B"
+        app:iconTint="#FFEB3B"
+        app:layout_constraintBottom_toTopOf="@+id/nestedScrollView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button5">
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="#FFEB3B" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/chatView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scrollbars="vertical"></androidx.recyclerview.widget.RecyclerView>
-    </androidx.core.widget.NestedScrollView>
+    <Button
+        android:id="@+id/button9"
+        android:layout_width="74dp"
+        android:layout_height="45dp"
+        app:icon="@drawable/ic_baseline_send_24"
+        app:iconTint="#FFEB3B"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/textView8"
@@ -36,27 +48,31 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
-    <Button
-        android:id="@+id/button5"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:onClick="matchesScreen"
-        android:text="Back"
-        android:textColor="#FFEB3B"
-        app:iconTint="#FFEB3B"
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="387dp"
+        android:layout_height="590dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/type_messages"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:strokeColor="#FFEB3B" />
+        app:layout_constraintTop_toBottomOf="@+id/button5"
+        app:layout_constraintVertical_bias="1.0">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/chatView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"></androidx.recyclerview.widget.RecyclerView>
+    </androidx.core.widget.NestedScrollView>
 
     <include
         android:id="@+id/type_messages"
         layout="@layout/messages_area"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="692dp"
+        android:layout_marginTop="750dp"
         android:layout_weight="1"
         android:gravity="bottom"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -64,17 +80,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <Button
-        android:id="@+id/button9"
-        android:layout_width="74dp"
-        android:layout_height="45dp"
-        app:icon="@drawable/ic_baseline_send_24"
-        app:iconTint="#FFEB3B"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

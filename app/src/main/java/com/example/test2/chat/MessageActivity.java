@@ -50,6 +50,7 @@ public class MessageActivity extends AppCompatActivity{
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_messages_screen); //or chat screen
         currentUserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         database = FirebaseDatabase.getInstance();
@@ -80,7 +81,6 @@ public class MessageActivity extends AppCompatActivity{
             public void onClick(View view){
                 String msg = text_message.getText().toString();
                 if (!msg.equals("")){
-                    System.out.println(msg);
                     sendMessage(currentUserID, matchID, msg);
                 }
             }
