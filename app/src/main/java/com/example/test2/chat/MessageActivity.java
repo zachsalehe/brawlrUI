@@ -13,8 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.test2.HomeScreen;
-import com.example.test2.ProfileScreen;
+import com.example.test2.screens.HomeScreen;
+import com.example.test2.screens.ProfileScreen;
 import com.example.test2.R;
 import com.example.test2.matches.MatchesActivity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,18 +23,19 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.auth.User;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * this is the holder activity that is responsible for being a background to display our
+ * messages, it uses the other classes in the chat package. Also it connects directly
+ * to the database, which is against the single responsibility principle but you can
+ * check the design document to see why we decided to make it this way
+ */
 public class MessageActivity extends AppCompatActivity{
-    /**
-     * Instantiates a new database of the message history
-     * for the current chat.
-     */
+
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter cChatAdapter;
     private RecyclerView.LayoutManager cChatLayoutManager;
@@ -48,6 +49,11 @@ public class MessageActivity extends AppCompatActivity{
     Button send_btn;
     EditText text_message;
 
+    /**
+     * sets up the database and retrieves the messages from the database. Due to it being
+     * real time it automatically retrieves new messages
+     * @param savedInstanceState a seaved instance of the view if the user closes the app
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messages_screen); //or chat screen
@@ -85,26 +91,14 @@ public class MessageActivity extends AppCompatActivity{
                 }
             }
         });
-
-//        ValueEventListener postListener = new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                // Get Post object and use the values to update the UI
-//                User user = dataSnapshot.getValue(User.class);
-//                System.out.println(reference.child("Unit1"));
-//                dataSnapshot.getValue(com.example.test2.chat.Chat.class);
-//                // ..
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//                // Getting Post failed, log a message
-//                //Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
-//                System.out.println("Error");
-//            }
-//        };
     }
 
+    /**
+     * sends a message to the desired user
+     * @param sender user sending the message
+     * @param receiver user recieving the message
+     * @param message the message
+     */
     private void sendMessage(String sender, String receiver, String message){
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("sender", sender);
@@ -114,24 +108,9 @@ public class MessageActivity extends AppCompatActivity{
         mDatabaseChat.push().setValue(hashMap);
     }
 
-//    private void getChatId(){
-//        mDatabaseUser.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                if (dataSnapshot.exists()){
-//                    chatID = dataSnapshot.getValue().toString();
-//                    mDatabaseChat = mDatabaseChat.child(chatID);
-//                    getChatMessages();
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
-//    }
-
+    /**
+     * retrieves chat messages
+     */
     private void getChatMessages() {
         mDatabaseChat.addChildEventListener(new ChildEventListener() {
             @Override
@@ -188,6 +167,10 @@ public class MessageActivity extends AppCompatActivity{
         });
     }
 
+    /**
+     * methods to return to other screens
+     * @param view the view of the desired screen
+     */
     public void homeScreen(View view){
         Intent intent = new Intent(this, HomeScreen.class);
         startActivity(intent);

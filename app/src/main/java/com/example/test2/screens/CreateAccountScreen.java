@@ -1,4 +1,4 @@
-package com.example.test2;
+package com.example.test2.screens;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.test2.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -21,6 +22,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * this class takes care fo creating users, although it does have interactions with the database
+ * which goes agains the single responsibility principle you can check the design document as to why
+ * we decided to make it this way
+ */
 public class CreateAccountScreen extends AppCompatActivity {
 
     private Button mRegister;
@@ -29,6 +35,12 @@ public class CreateAccountScreen extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthStateListener;
 
+    /**
+     * this method sets up the database and creates listeners for changes in the sate of our
+     * database
+     * @param savedInstanceState this is the saved state of this screen in case the user closes the
+     *                           app
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -37,6 +49,12 @@ public class CreateAccountScreen extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         firebaseAuthStateListener = new FirebaseAuth.AuthStateListener() {
+            /**
+             * this updates all the information on the screen and on the database in case there is
+             * a change on the database. If a user is successfully created it also changes to the
+             * home screen view
+             * @param firebaseAuth this is the auth object of our database
+             */
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -44,7 +62,6 @@ public class CreateAccountScreen extends AppCompatActivity {
                     Intent intent = new Intent(CreateAccountScreen.this, HomeScreen.class);
                     startActivity(intent);
                     finish();
-                    return;
                 }
             }
         };
@@ -57,6 +74,10 @@ public class CreateAccountScreen extends AppCompatActivity {
         mName = (EditText) findViewById(R.id.username2);
 
         mRegister.setOnClickListener(new View.OnClickListener() {
+            /**
+             * this registers a user onto our database
+             * @param view this is the current view of create account scren
+             */
             @Override
             public void onClick(View view) {
                 final String email = mEmail.getText().toString();
@@ -68,6 +89,10 @@ public class CreateAccountScreen extends AppCompatActivity {
                     return;
                 }
                 mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(CreateAccountScreen.this, new OnCompleteListener<AuthResult>() {
+                    /**
+                     * this checks that our user was successfully created.
+                     * @param task
+                     */
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(!task.isSuccessful()) {
@@ -91,24 +116,38 @@ public class CreateAccountScreen extends AppCompatActivity {
         });
     }
 
+    /**
+     * start the database listeners
+     */
     @Override
     protected void onStart() {
         super.onStart();
         mAuth.addAuthStateListener(firebaseAuthStateListener);
     }
 
+    /**
+     * end the database liseteners
+     */
     @Override
     protected void onStop() {
         super.onStop();
         mAuth.removeAuthStateListener(firebaseAuthStateListener);
     }
 
+    /**
+     * returns to main
+     * @param view the main view
+     */
     public void backToMain(View view) {
 
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, MainActivityScreen.class);
         startActivity(intent);
     }
 
+    /**
+     * goes to biographical info
+     * @param view the biographical info view
+     */
     public void toBiographical(View view) {
 
         Intent intent = new Intent(this, BiographicalScreen.class);

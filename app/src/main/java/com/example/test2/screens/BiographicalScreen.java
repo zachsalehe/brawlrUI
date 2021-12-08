@@ -1,4 +1,4 @@
-package com.example.test2;
+package com.example.test2.screens;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,6 +12,12 @@ import android.widget.ImageView;
 import androidx.activity.result.ActivityResult;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.test2.R;
+
+/**
+ * this is the class that is responsible for displaying a users bio and for editing anything the
+ * user wants to edit about the bio
+ */
 public class BiographicalScreen extends AppCompatActivity implements View.OnClickListener {
 
     ImageView image1;
@@ -22,8 +28,12 @@ public class BiographicalScreen extends AppCompatActivity implements View.OnClic
     Button button3;
 
     protected final BetterActivityResult<Intent,
-            ActivityResult> activityLauncher = BetterActivityResult.registerActivityForResult(this);
+                ActivityResult> activityLauncher = BetterActivityResult.registerActivityForResult(this);
 
+    /**
+     * adds listeners to our buttons and gets our image selectors upon the app starting
+     * @param savedInstanceState the state of the app in case the user closes the app
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -41,13 +51,19 @@ public class BiographicalScreen extends AppCompatActivity implements View.OnClic
         button3.setOnClickListener(this);
     }
 
+    /**
+     * returns to the account creation screen
+     * @param view the account creation view
+     */
     public void backToCreate(View view) {
 
         Intent intent = new Intent(this, CreateAccountScreen.class);
         startActivity(intent);
     }
 
-
+    /**
+     * all of these are methods used to upload images from the phone to the app
+     */
     public void uploadImage1() {
         Intent intent = new Intent(Intent.ACTION_PICK,
                 MediaStore.Images.Media.EXTERNAL_CONTENT_URI);

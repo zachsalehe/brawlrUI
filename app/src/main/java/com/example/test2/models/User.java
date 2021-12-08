@@ -1,10 +1,13 @@
-package com.example.test2;
+package com.example.test2.models;
 
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * this class is a representation of how we store our Users in our database
+ */
 public class User implements Serializable {
     private String id;
     private HashMap<String, String> loginInfo;
@@ -17,12 +20,11 @@ public class User implements Serializable {
     private ArrayList<User> likes;
     private ArrayList<User> matches;
     private boolean isLoggedIn;
-    // TODO: add chatmanager
-//    private ChatManager userCM;
 
     /**
      * Creates a User object based on the inputted information for the User
-     * attributes.
+     * attributes. There are multiple methods depending on the amount of information
+     * the user has filled in.
      * @param id unique username created by new users
      * @param loginInfo username and password stored in Hashmap
      * @param personalStats user's inputted answers to weight, height, gender, etc.

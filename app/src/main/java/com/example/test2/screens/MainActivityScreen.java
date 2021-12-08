@@ -1,25 +1,23 @@
-package com.example.test2;
+package com.example.test2.screens;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
+import com.example.test2.R;
 
-import java.util.HashMap;
-import java.util.Map;
-
-public class MainActivity extends AppCompatActivity {
+/**
+ * this is responsible for the main activity of our app, that is the one that you see when you
+ * open the app for the first time. Although it has database interactions you can see the design
+ * document for as to why we made it this way
+ */
+public class MainActivityScreen extends AppCompatActivity {
 
     private Button mLogin, mRegister;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,20 +30,18 @@ public class MainActivity extends AppCompatActivity {
         mLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, SignInScreen.class);
+                Intent intent = new Intent(MainActivityScreen.this, SignInScreen.class);
                 startActivity(intent);
                 finish();
-                return;
             }
         });
 
         mRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, CreateAccountScreen.class);
+                Intent intent = new Intent(MainActivityScreen.this, CreateAccountScreen.class);
                 startActivity(intent);
                 finish();
-                return;
             }
         });
     }
