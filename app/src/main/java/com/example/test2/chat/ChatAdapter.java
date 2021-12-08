@@ -57,13 +57,14 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatViewHolders>{
     @Override
     public void onBindViewHolder(@NonNull ChatViewHolders holder, int position) {
         holder.mMessage.setText(chatList.get(position).getMessage());
-        System.out.println(chatList.get(position).getMessage());
         Drawable clientUserBubble = context.getResources().getDrawable(R.drawable.user_bubble);
         Drawable matchUserBubble = context.getResources().getDrawable(R.drawable.other_bubble);
         if(chatList.get(position).isCurrentUser()){
+            holder.mContainer.setGravity(Gravity.RIGHT);
             holder.mMessage.setGravity(Gravity.END);
             holder.mMessage.setBackground(clientUserBubble);
         }else{
+            holder.mContainer.setGravity(Gravity.LEFT);
             holder.mMessage.setGravity(Gravity.START);
             holder.mMessage.setBackground(matchUserBubble);
         }

@@ -30,7 +30,6 @@
         <entry key="..\:/Users/anred/AndroidStudioProjects/brawlr/app/src/main/res/menu/home_menu.xml" value="0.2713541666666667" />
         <entry key="..\:/Users/jdpug/AndroidStudioProjects/brawlrUI/app/src/main/res/layout/activity_home.xml" value="0.16102136529442418" />
         <entry key="..\:/Users/jdpug/AndroidStudioProjects/brawlrUI/app/src/main/res/layout/activity_messages_screen.xml" value="0.1" />
-        <entry key="..\:/Users/pierr/StudioProjects/finalCommentingAndClean/app/src/main/res/layout/activity_main.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/xing/AndroidStudioProjects/brawlrUI/app/src/main/res/layout/activity_main.xml" value="0.1671875" />
         <entry key="..\:/Users/xing/AndroidStudioProjects/brawlrUI/app/src/main/res/layout/activity_messages_screen.xml" value="0.176" />
         <entry key="app/src/main/res/drawable/gradient.xml" value="0.25833333333333336" />
@@ -38,10 +37,16 @@
         <entry key="app/src/main/res/drawable/user_bubble.xml" value="0.14791666666666667" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_matches.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_messages_screen.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_messages_screen.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_profile_screen.xml" value="0.2105978260869565" />
+        <entry key="app/src/main/res/layout/biographical_input.xml" value="0.13177083333333334" />
+        <entry key="app/src/main/res/layout/create_account.xml" value="0.2105978260869565" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.2105978260869565" />
+        <entry key="app/src/main/res/layout/fragment_messages.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_chat.xml" value="0.2" />
         <entry key="app/src/main/res/layout/item_matches.xml" value="0.33" />
         <entry key="app/src/main/res/layout/messages_area.xml" value="0.13177083333333334" />
+        <entry key="app/src/main/res/menu/home_menu.xml" value="0.25625" />
       </map>
     </option>
   </component>

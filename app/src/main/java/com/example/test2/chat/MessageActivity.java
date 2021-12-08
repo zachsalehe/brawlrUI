@@ -23,6 +23,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -41,10 +42,11 @@ public class MessageActivity extends AppCompatActivity{
     public boolean recieveSuccess = false;
 
     TextView username;
-    private String matchID, currentUserID;
+    private String matchID, currentUserID, chatID;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private final DatabaseReference reference = database.getReference();
     private DatabaseReference mDatabaseChat;
+    private DatabaseReference mDatabaseUser;
     Intent intent;
     Button send_btn;
     EditText text_message;
@@ -62,10 +64,10 @@ public class MessageActivity extends AppCompatActivity{
 
         matchID = getIntent().getExtras().getString("matchID");
 
-        DatabaseReference mDatabaseUser = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserID).child("connections").child("matches").child(matchID).child("ChatId");
+        mDatabaseUser = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserID).child("connections").child("matches").child(matchID).child("ChatId");
         mDatabaseChat = FirebaseDatabase.getInstance().getReference().child("Chats");
 
-        getChatMessages();
+        getChatID();
 
         RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.chatView);
         mRecyclerView.setNestedScrollingEnabled(false);
@@ -113,6 +115,24 @@ public class MessageActivity extends AppCompatActivity{
 
     }
 
+    private void getChatID(){
+        mDatabaseUser.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    chatID = dataSnapshot.getValue().toString();
+                    mDatabaseChat = mDatabaseChat.child(chatID);
+                    getChatMessages();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
     /**
      * retrieves chat messages
      */
@@ -147,7 +167,6 @@ public class MessageActivity extends AppCompatActivity{
                         recieveSuccess = true;
                     }
                 } else {
-                    System.out.println("bbed 2message");
                     recieveSuccess = false;
                 }
             }

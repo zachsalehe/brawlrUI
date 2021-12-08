@@ -84,7 +84,7 @@ public class CreateAccountScreen extends AppCompatActivity {
                 final String password = mPassword.getText().toString();
                 final String cPassword = mCPassword.getText().toString();
                 final String name = mName.getText().toString();
-                createAccount(email, cPassword, password, email);
+                createAccount(name, cPassword, password, email);
             }
         });
     }
@@ -98,7 +98,7 @@ public class CreateAccountScreen extends AppCompatActivity {
      * @param password the password
      * @param email the email adress
      */
-    protected void createAccount(String name, String cPassword, String password,String email){
+    protected void createAccount(String name, String cPassword, String password, String email){
         if (name.equals("") || password.equals("") || email.equals("") || !password.equals(cPassword)) {
             Toast.makeText(CreateAccountScreen.this, "sign up error", Toast.LENGTH_SHORT).show();
             return;

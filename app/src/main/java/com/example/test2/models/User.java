@@ -45,7 +45,6 @@ public class User implements Serializable {
         this.likes = new ArrayList<>();
         this.matches = new ArrayList<>();
         this.isLoggedIn = false;
-//        this.userCM = new ChatManager(this);
     }
 
     public User(String id, HashMap<String, String> loginInfo){
