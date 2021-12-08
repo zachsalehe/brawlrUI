@@ -40,7 +40,7 @@ public class MessageActivity extends AppCompatActivity{
     private RecyclerView.LayoutManager cChatLayoutManager;
 
     TextView username;
-    private String matchID, currentUserID;
+    private String matchID, currentUserID, chatID;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference reference = database.getReference();
     private DatabaseReference mDatabaseUser, mDatabaseChat;
@@ -60,7 +60,7 @@ public class MessageActivity extends AppCompatActivity{
         mDatabaseUser = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserID).child("connections").child("matches").child(matchID).child("ChatId");
         mDatabaseChat = FirebaseDatabase.getInstance().getReference().child("Chats");
 
-        getChatMessages();
+        getChatID();
 
         mRecyclerView = (RecyclerView) findViewById(R.id.chatView);
         mRecyclerView.setNestedScrollingEnabled(false);
@@ -114,23 +114,23 @@ public class MessageActivity extends AppCompatActivity{
         mDatabaseChat.push().setValue(hashMap);
     }
 
-//    private void getChatId(){
-//        mDatabaseUser.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                if (dataSnapshot.exists()){
-//                    chatID = dataSnapshot.getValue().toString();
-//                    mDatabaseChat = mDatabaseChat.child(chatID);
-//                    getChatMessages();
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
-//    }
+    private void getChatID(){
+        mDatabaseUser.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    chatID = dataSnapshot.getValue().toString();
+                    mDatabaseChat = mDatabaseChat.child(chatID);
+                    getChatMessages();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
 
     private void getChatMessages() {
         mDatabaseChat.addChildEventListener(new ChildEventListener() {
@@ -161,8 +161,6 @@ public class MessageActivity extends AppCompatActivity{
                         resultsChats.add(newMessage);
                         cChatAdapter.notifyDataSetChanged();
                     }
-                } else {
-                    System.out.println("bbed 2message");
                 }
             }
 
@@ -203,7 +201,7 @@ public class MessageActivity extends AppCompatActivity{
         startActivity(intent);
     }
 
-    private ArrayList<Chat> resultsChats = new ArrayList<Chat>();
+    private ArrayList<Chat> resultsChats = new ArrayList<>();
     private List<Chat> getDataSetChat() {
         return resultsChats;
     }
