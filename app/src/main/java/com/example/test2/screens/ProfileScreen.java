@@ -1,8 +1,7 @@
-package com.example.test2;
+package com.example.test2.screens;
 
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContract;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,10 +20,10 @@ import android.widget.ImageView;
 import androidx.activity.result.ActivityResult;
 
 import com.bumptech.glide.Glide;
+import com.example.test2.R;
 import com.example.test2.matches.MatchesActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -40,28 +39,28 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-//public class ProfileScreen extends AppCompatActivity implements View.OnClickListener {
+/**
+ * this class is responsible for showing the profile screen of the app, it also allows the user
+ * to edit their information. This runs counter to the single responsibility principle, look at the
+ * design doc why we made it this way
+ */
 public class ProfileScreen extends AppCompatActivity {
 
     private EditText mNameField, mFightingStyleField, mWeightField, mHeightField, mBiographyField, mControversialField;
-    private Button mConfirm;
     private ImageView mProfileImage;
 
-    private FirebaseAuth mAuth;
     private DatabaseReference mUserDatabase;
 
     private String userId, name, style, weight, height, biography, opinion, profileImageUrl;
 
     private Uri resultUri;
 
-
-//    ImageView image1;
-//    Button button1;
-//    ImageView image2;
-//    Button button2;
-//    ImageView image3;
-//    Button button3;
-
+    /**
+     * connects to the database when the screen is created and loads all the information from the
+     * user into the fields, it also allows for the editing of these fields. However editing and
+     * retrieval is done in different methods
+     * @param savedInstanceState the previous state of the app if the user closed the app
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,9 +76,9 @@ public class ProfileScreen extends AppCompatActivity {
 
         mProfileImage = (ImageView) findViewById(R.id.profileImage);
 
-        mConfirm = (Button) findViewById(R.id.confirm);
+        Button mConfirm = (Button) findViewById(R.id.confirm);
 
-        mAuth = FirebaseAuth.getInstance();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
         userId = mAuth.getCurrentUser().getUid();
 
         mUserDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
@@ -92,11 +91,8 @@ public class ProfileScreen extends AppCompatActivity {
                     @Override
                     public void onActivityResult(ActivityResult result) {
                         if (result.getResultCode() == Activity.RESULT_OK) {
-                            // There are no request codes
                             Intent data = result.getData();
-//                            doSomeOperations();
-                            final Uri imageUri = data.getData();
-                            resultUri = imageUri;
+                            resultUri = data.getData();
                             mProfileImage.setImageURI(resultUri);
                         }
                     }
@@ -108,7 +104,6 @@ public class ProfileScreen extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_PICK);
                 intent.setType("image/*");
-//                startActivityForResult(intent, 1);
                 onActivityResultLauncher.launch(intent);
             }
         });
@@ -120,17 +115,13 @@ public class ProfileScreen extends AppCompatActivity {
             }
         });
 
-//        image1 = (ImageView) findViewById(R.id.imageView6);
-//        button1 = (Button) findViewById(R.id.button6);
-//        button1.setOnClickListener(this);
-//        image2 = (ImageView) findViewById(R.id.imageView7);
-//        button2 = (Button) findViewById(R.id.button7);
-//        button2.setOnClickListener(this);
-//        image3 = (ImageView) findViewById(R.id.imageView8);
-//        button3 = (Button) findViewById(R.id.button8);
-//        button3.setOnClickListener(this);
     }
 
+    /**
+     * gets the information of the current user being viewed, when this is call the first time it
+     * puts a listener on the app which will change any user information automatically if it is
+     * changed on the database
+     */
     private void getUserInfo() {
         mUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -164,14 +155,10 @@ public class ProfileScreen extends AppCompatActivity {
                     Glide.clear(mProfileImage);
                     if(map.get("profileImageUrl")!=null){
                         profileImageUrl = map.get("profileImageUrl").toString();
-                        switch(profileImageUrl){
-                            case "default":
-//                                Glide.with(getApplication()).load(R.mipmap.ic_launcher).into(mProfileImage);
-                                mProfileImage.setImageResource(R.mipmap.ic_launcher);
-                                break;
-                            default:
-                                Glide.with(getApplication()).load(profileImageUrl).into(mProfileImage);
-                                break;
+                        if ("default".equals(profileImageUrl)) {
+                            mProfileImage.setImageResource(R.mipmap.ic_launcher);
+                        } else {
+                            Glide.with(getApplication()).load(profileImageUrl).into(mProfileImage);
                         }
                     }
                 }
@@ -185,6 +172,9 @@ public class ProfileScreen extends AppCompatActivity {
 
     }
 
+    /**
+     * saves the changed user information into the database
+     */
     private void saveUserInformation() {
         name = mNameField.getText().toString();
         style = mFightingStyleField.getText().toString();
@@ -233,13 +223,11 @@ public class ProfileScreen extends AppCompatActivity {
                             mUserDatabase.updateChildren(newImage);
 
                             finish();
-                            return;
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception exception) {
                             finish();
-                            return;
                         }
                     });
                 }
@@ -249,80 +237,28 @@ public class ProfileScreen extends AppCompatActivity {
         }
     }
 
-
-//    public void uploadImage1() {
-//        Intent intent = new Intent(Intent.ACTION_PICK,
-//                MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-//        activityLauncher.launch(intent, result -> {
-//            if (result.getResultCode() == Activity.RESULT_OK) {
-//                // There are no request codes
-//                Uri data = result.getData().getData();
-//                image1.setImageURI(data);
-//            }
-//        });
-//    }
-//    public void uploadImage2() {
-//        Intent intent = new Intent(Intent.ACTION_PICK,
-//                MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-//        activityLauncher.launch(intent, result -> {
-//            if (result.getResultCode() == Activity.RESULT_OK) {
-//                // There are no request codes
-//                Uri data = result.getData().getData();
-//                image2.setImageURI(data);
-//            }
-//        });
-//    }
-//    public void uploadImage3() {
-//        Intent intent = new Intent(Intent.ACTION_PICK,
-//                MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-//        activityLauncher.launch(intent, result -> {
-//            if (result.getResultCode() == Activity.RESULT_OK) {
-//                // There are no request codes
-//                Uri data = result.getData().getData();
-//                image3.setImageURI(data);
-//            }
-//        });
-//    }
-
-//    @Override
-//    public void onClick(View view) {
-//        switch(view.getId()){
-//            case R.id.button6:
-//                uploadImage1();
-//                break;
-//            case R.id.button7:
-//                uploadImage2();
-//                break;
-//            case R.id.button8:
-//                uploadImage3();
-//                break;
-//        }
-//    }
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if(requestCode == 1 && resultCode == Activity.RESULT_OK){
-//            final Uri imageUri = data.getData();
-//            resultUri = imageUri;
-//            mProfileImage.setImageURI(resultUri);
-//        }
-//    }
-
+    /**
+     * goes to the home screen
+     * @param view home screen view
+     */
     public void homeScreen(View view){
         Intent intent = new Intent(this, HomeScreen.class);
         startActivity(intent);
     }
 
+    /**
+     * goes to the profile screen
+     * @param view profile screen views
+     */
     public void profileScreen(View view){
         Intent intent = new Intent(this, ProfileScreen.class);
         startActivity(intent);
     }
 
-//    public void messagesScreen(View view){
-//        Intent intent = new Intent(this, MessagesScreen.class);
-//        startActivity(intent);
-//    }
-
+    /**
+     * goes to the matches screen
+     * @param view the matches screen
+     */
     public void matchesScreen(View view){
         Intent intent = new Intent(this, MatchesActivity.class);
         startActivity(intent);

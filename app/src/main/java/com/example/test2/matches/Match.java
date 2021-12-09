@@ -1,5 +1,8 @@
 package com.example.test2.matches;
 
+/**
+ * this is a match object, they are created when two users swipe right on each other
+ */
 public class Match {
     private String userId;
     private String name;

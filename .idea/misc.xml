@@ -38,9 +38,15 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_matches.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_messages_screen.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_profile_screen.xml" value="0.2105978260869565" />
+        <entry key="app/src/main/res/layout/biographical_input.xml" value="0.13177083333333334" />
+        <entry key="app/src/main/res/layout/create_account.xml" value="0.2105978260869565" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.2105978260869565" />
+        <entry key="app/src/main/res/layout/fragment_messages.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_chat.xml" value="0.2" />
         <entry key="app/src/main/res/layout/item_matches.xml" value="0.33" />
         <entry key="app/src/main/res/layout/messages_area.xml" value="0.13177083333333334" />
+        <entry key="app/src/main/res/menu/home_menu.xml" value="0.25625" />
       </map>
     </option>
   </component>

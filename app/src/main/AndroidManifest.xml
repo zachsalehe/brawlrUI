@@ -20,10 +20,10 @@
             android:name=".chat.MessageActivity"
             android:exported="false" />
         <activity
-            android:name=".ProfileScreen"
+            android:name=".screens.ProfileScreen"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".screens.MainActivityScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,7 +32,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SignInScreen"
+            android:name=".screens.SignInScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,7 +41,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CreateAccountScreen"
+            android:name=".screens.CreateAccountScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -50,7 +50,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".BiographicalScreen"
+            android:name=".screens.BiographicalScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -59,7 +59,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".HomeScreen"
+            android:name=".screens.HomeScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

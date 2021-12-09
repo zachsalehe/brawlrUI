@@ -1,4 +1,4 @@
-package com.example.test2;
+package com.example.test2.screens;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.test2.R;
 import com.example.test2.cards.arrayAdapter;
 import com.example.test2.cards.cards;
 import com.example.test2.matches.MatchesActivity;
@@ -21,17 +22,21 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.protobuf.Value;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * this class is responsible for handling the home screen and for making swiping work in the app
+ * This class also interacts with the database which goes against the single responsibility
+ * principle, check the design document for why we made this decision
+ */
 public class HomeScreen extends AppCompatActivity {
     private cards cards_data[];
     private com.example.test2.cards.arrayAdapter arrayAdapter;
     private int i;
+    public boolean matchSuccess = false;
 
     private FirebaseAuth mAuth;
     private String currentUid;
@@ -40,14 +45,17 @@ public class HomeScreen extends AppCompatActivity {
     ListView listView;
     List<cards> rowItems;
 
+    public HomeScreen() {
+    }
+
     /**
      * onCreate runs code upon the creation of the class using the current
      * state of the app.
      * The function will manage the overall pulling of users from the database to the app,
      * create cards to prepare for the swiping feature, and remove cards from the array upon
      * swiping actions.
-     * TODO: this is the main function we're gonna want to pick apart; esp SetFlingListener.
-     * @param savedInstanceState
+     * @param savedInstanceState this is a saved instance that is loaded if the user closes the app
+     *                           while on this screen
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,26 +64,17 @@ public class HomeScreen extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_home);
 
-        // saving the full list of users in a usersDb variable
-        // TODO: how can we do a more elegant pull from the database? also, needs typing
         usersDb = FirebaseDatabase.getInstance().getReference().child("Users");
 
-        // authenticating current client user and grabbing client's user ID in currentUid
         mAuth = FirebaseAuth.getInstance();
         currentUid = mAuth.getCurrentUser().getUid();
 
-        // Adds all users in the database who are not the current client user into the
-        // rowItems array to be displayed for swiping.
-        // TODO: only grab a few users at a time; more will be called in onAdapterAboutToEmpty
-        getOtherUsers(); 
+        getOtherUsers();
 
-        // this is where arrayAdapter will get the raw user information from
         rowItems = new ArrayList<cards>();
 
-        // the swipe feed will be grabbing card info from the arrayAdapter
         arrayAdapter = new arrayAdapter(this, R.layout.item, rowItems );
 
-        // sets up a container that contains the cards
         SwipeFlingAdapterView flingContainer = (SwipeFlingAdapterView) findViewById(R.id.frame);
 
         flingContainer.setAdapter(arrayAdapter);
@@ -94,7 +93,7 @@ public class HomeScreen extends AppCompatActivity {
             /**
              * Removes the currently displayed user card from the client user's
              * connections if the client swiped left. (In the "no" child of "connections")
-             * @param dataObject
+             * @param dataObject this is the object of the user that was just swiped left on
              */
             @Override
             public void onLeftCardExit(Object dataObject) {
@@ -107,7 +106,7 @@ public class HomeScreen extends AppCompatActivity {
             /**
              * Adds the currently displayed user card to the client user's connections
              * if the client swiped right. (In the "yes" child of "connections").
-             * @param dataObject
+             * @param dataObject this is the the object of the user that was just swiped right on
              */
             @Override
             public void onRightCardExit(Object dataObject) {
@@ -122,7 +121,7 @@ public class HomeScreen extends AppCompatActivity {
              * Use this to continuously add more user cards from the database into the
              * Adapter array in order to be displayed. It'd probably be nice to implement this
              * feature for scalability reasons as the user database gets larger.
-             * @param itemsInAdapter
+             * @param itemsInAdapter an array of user items in our adapter
              */
             @Override
             public void onAdapterAboutToEmpty(int itemsInAdapter) {
@@ -130,16 +129,13 @@ public class HomeScreen extends AppCompatActivity {
 
             /**
              * Listener for scrolling action.
-             * @param scrollProgressPercent
+             * @param scrollProgressPercent the percent of the screen that has been scrolled
              */
             @Override
             public void onScroll(float scrollProgressPercent) {
             }
         });
 
-        /**
-         * Listener to indicate that the card has been clicked on.
-         */
         flingContainer.setOnItemClickListener(new SwipeFlingAdapterView.OnItemClickListener() {
             @Override
             public void onItemClicked(int itemPosition, Object dataObject) {
@@ -152,14 +148,14 @@ public class HomeScreen extends AppCompatActivity {
     /**
      * Sets up a listener for when new cards are added into the client user's connections
      * table.
-     * @param userId
+     * @param userId the id of the user that has just been matched with
      */
-    private void isMatch(String userId) {
+    protected void isMatch(String userId) {
         DatabaseReference currentUserConnectionsDb = usersDb.child(currentUid).child("connections").child("yes").child(userId);
         currentUserConnectionsDb.addListenerForSingleValueEvent(new ValueEventListener() {
             /**
              * Connects client user and matched user in the matches table.
-             * @param snapshot
+             * @param snapshot snapshot of the current state of the database
              */
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -170,6 +166,7 @@ public class HomeScreen extends AppCompatActivity {
 
                     usersDb.child(snapshot.getKey()).child("connections").child("matches").child(currentUid).child("ChatId").setValue(key);
                     usersDb.child(currentUid).child("connections").child("matches").child(snapshot.getKey()).child("ChatId").setValue(key);
+                    matchSuccess = true;
                 }
             }
 
@@ -187,18 +184,10 @@ public class HomeScreen extends AppCompatActivity {
      *
      */
     public void getOtherUsers() {
-        // creates a reference of the full list of users from the database
-        // TODO: cleaner way to pull users?
         DatabaseReference notUserDb = FirebaseDatabase.getInstance().getReference().child("Users");
 
-        // adds event listeners to look for changes in the notUserDb database reference
         notUserDb.addChildEventListener(new ChildEventListener() {
             @Override
-            /**
-             * onChildAdded() will add any newly added user into the client user's swiping cards
-             * list.
-             * TODO: instead of checking for new users realtime, do it in onAdapterAboutToEmpty
-             */
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 if (snapshot.exists() && !snapshot.child("connections").child("no").hasChild(currentUid) && !snapshot.child("connections").child("yes").hasChild(currentUid)) {
                     String profileImageUrl = "default";
@@ -212,10 +201,10 @@ public class HomeScreen extends AppCompatActivity {
             }
 
             /**
-             * TODO: It would be nice to do something with onChildChanged to ensure only updated
-             * account information is displayed in the swipe feed.
-             * @param snapshot
-             * @param previousChildName
+             * account information is displayed in the swipe feed. Although these methods are not implemented
+             * they are required to exist to add a childEventListener
+             * @param snapshot a database snapshot
+             * @param previousChildName the name of the previous card
              */
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
@@ -223,9 +212,8 @@ public class HomeScreen extends AppCompatActivity {
             }
 
             /**
-             * TODO: It'd probably be nice to do something with onChildRemoved to make sure
              * deleted accounts can no longer show up in the swiping feed.
-             * @param snapshot
+             * @param snapshot a snapshot of the database
              */
             @Override
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
@@ -244,9 +232,12 @@ public class HomeScreen extends AppCompatActivity {
         });
     }
 
+    protected void setCurrentUid(String currentID){
+        currentUid = currentID;
+    }
     /**
      * Intent tells the app to go to the home screen.
-     * @param view
+     * @param view the home screen view
      */
     public void homeScreen(View view){
         Intent intent = new Intent(this, HomeScreen.class);
@@ -255,21 +246,17 @@ public class HomeScreen extends AppCompatActivity {
 
     /**
      * Intent tells the app to go to the user's profile screen.
-     * @param view
+     * @param view profile screen view
      */
     public void profileScreen(View view){
         Intent intent = new Intent(this, ProfileScreen.class);
         startActivity(intent);
     }
 
-//    public void messagesScreen(View view){
-//        Intent intent = new Intent(this, MessagesScreen.class);
-//        startActivity(intent);
-//    }
 
     /**
      * Intent tells the app to go to the list of matches screen.
-     * @param view
+     * @param view the matches screen view
      */
     public void matchesScreen(View view){
         Intent intent = new Intent(this, MatchesActivity.class);
@@ -278,13 +265,12 @@ public class HomeScreen extends AppCompatActivity {
 
     /**
      * Logs out the user from the current mAuth instance.
-     * @param view
+     * @param view the main screen view
      */
     public void logoutUser(View view) {
         mAuth.signOut();
-        Intent intent = new Intent(HomeScreen.this, MainActivity.class);
+        Intent intent = new Intent(HomeScreen.this, MainActivityScreen.class);
         startActivity(intent);
         finish();
-        return;
     }
 }

@@ -13,8 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.test2.HomeScreen;
-import com.example.test2.ProfileScreen;
+import com.example.test2.screens.HomeScreen;
+import com.example.test2.screens.ProfileScreen;
 import com.example.test2.R;
 import com.example.test2.matches.MatchesActivity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,30 +24,38 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.auth.User;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * this is the holder activity that is responsible for being a background to display our
+ * messages, it uses the other classes in the chat package. Also it connects directly
+ * to the database, which is against the single responsibility principle but you can
+ * check the design document to see why we decided to make it this way
+ */
 public class MessageActivity extends AppCompatActivity{
-    /**
-     * Instantiates a new database of the message history
-     * for the current chat.
-     */
-    private RecyclerView mRecyclerView;
+
     private RecyclerView.Adapter cChatAdapter;
-    private RecyclerView.LayoutManager cChatLayoutManager;
+    public boolean sendSuccess = false;
+    public boolean recieveSuccess = false;
 
     TextView username;
     private String matchID, currentUserID, chatID;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private DatabaseReference reference = database.getReference();
-    private DatabaseReference mDatabaseUser, mDatabaseChat;
+    private final DatabaseReference reference = database.getReference();
+    private DatabaseReference mDatabaseChat;
+    private DatabaseReference mDatabaseUser;
     Intent intent;
     Button send_btn;
     EditText text_message;
 
+    /**
+     * sets up the database and retrieves the messages from the database. Due to it being
+     * real time it automatically retrieves new messages
+     * @param savedInstanceState a seaved instance of the view if the user closes the app
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
@@ -62,11 +70,11 @@ public class MessageActivity extends AppCompatActivity{
 
         getChatID();
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.chatView);
+        RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.chatView);
         mRecyclerView.setNestedScrollingEnabled(false);
         mRecyclerView.setHasFixedSize(false);
 
-        cChatLayoutManager = new LinearLayoutManager(MessageActivity.this);
+        RecyclerView.LayoutManager cChatLayoutManager = new LinearLayoutManager(MessageActivity.this);
         mRecyclerView.setLayoutManager(cChatLayoutManager);
         cChatAdapter = new ChatAdapter(getDataSetChat(), MessageActivity.this);
         mRecyclerView.setAdapter(cChatAdapter);
@@ -85,33 +93,26 @@ public class MessageActivity extends AppCompatActivity{
                 }
             }
         });
-
-//        ValueEventListener postListener = new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                // Get Post object and use the values to update the UI
-//                User user = dataSnapshot.getValue(User.class);
-//                System.out.println(reference.child("Unit1"));
-//                dataSnapshot.getValue(com.example.test2.chat.Chat.class);
-//                // ..
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//                // Getting Post failed, log a message
-//                //Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
-//                System.out.println("Error");
-//            }
-//        };
     }
 
-    private void sendMessage(String sender, String receiver, String message){
+    /**
+     * sends a message to the desired user
+     * @param sender user sending the message
+     * @param receiver user recieving the message
+     * @param message the message
+     */
+    protected void sendMessage(String sender, String receiver, String message){
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("sender", sender);
         hashMap.put("receiver", receiver);
         hashMap.put("message", message);
 
-        mDatabaseChat.push().setValue(hashMap);
+        try {
+            mDatabaseChat.push().setValue(hashMap);
+        } catch (Exception e){
+            sendSuccess = true;
+        }
+
     }
 
     private void getChatID(){
@@ -132,7 +133,10 @@ public class MessageActivity extends AppCompatActivity{
         });
     }
 
-    private void getChatMessages() {
+    /**
+     * retrieves chat messages
+     */
+    protected void getChatMessages() {
         mDatabaseChat.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
@@ -153,14 +157,17 @@ public class MessageActivity extends AppCompatActivity{
                         receiver = snapshot.child("receiver").getValue().toString();
                     }
                     if (message != null && sender != null && receiver != null) {
-                        Boolean isCurrentUser = false;
+                        boolean isCurrentUser = false;
                         if (sender.equals(currentUserID)) {
                             isCurrentUser = true;
                         }
                         Chat newMessage = new Chat(sender, receiver, message, isCurrentUser);
                         resultsChats.add(newMessage);
                         cChatAdapter.notifyDataSetChanged();
+                        recieveSuccess = true;
                     }
+                } else {
+                    recieveSuccess = false;
                 }
             }
 
@@ -186,6 +193,14 @@ public class MessageActivity extends AppCompatActivity{
         });
     }
 
+    public void setCurrentUserID(String currentUserID) {
+        this.currentUserID = currentUserID;
+    }
+
+    /**
+     * methods to return to other screens
+     * @param view the view of the desired screen
+     */
     public void homeScreen(View view){
         Intent intent = new Intent(this, HomeScreen.class);
         startActivity(intent);

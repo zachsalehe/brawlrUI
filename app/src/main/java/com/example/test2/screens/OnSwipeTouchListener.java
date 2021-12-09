@@ -1,20 +1,32 @@
-package com.example.test2;
+package com.example.test2.screens;
 import android.content.Context;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+
+/**
+ * part of UI this class is responsible for tracking swipes on the app
+ */
 class OnSwipeTouchListener implements View.OnTouchListener {
-    private GestureDetector gestureDetector;
+    private final GestureDetector gestureDetector;
     OnSwipeTouchListener(Context c) {
         gestureDetector = new GestureDetector(c, new GestureListener());
     }
     public boolean onTouch(final View view, final MotionEvent motionEvent) {
         return gestureDetector.onTouchEvent(motionEvent);
     }
+
+    /**
+     * we are declaring a class within a class, this is inevitable as it is the only way to have
+     * the gesture listener be able to access the screen inputs of this view. We know that this
+     * also goes against the single responsiblity principle but this is part of the core of android
+     * and there is no other way to implement it.
+     */
     private final class GestureListener extends
             GestureDetector.SimpleOnGestureListener {
         private static final int SWIPE_THRESHOLD = 100;
         private static final int SWIPE_VELOCITY_THRESHOLD = 100;
+
         @Override
         public boolean onDown(MotionEvent e) {
             return true;
@@ -34,6 +46,16 @@ class OnSwipeTouchListener implements View.OnTouchListener {
             onLongClick();
             super.onLongPress(e);
         }
+
+        /**
+         * checks if the swipe has passed the thresh hold and if it has it calls swipe right or
+         * swipe left on the home screen view class
+         * @param e1 starting position of the card
+         * @param e2 ending position of the card
+         * @param velocityX velocity of the x movement
+         * @param velocityY velocity of the y movement
+         * @return returns false if the motion event does not count as a swipe
+         */
         @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
             try {

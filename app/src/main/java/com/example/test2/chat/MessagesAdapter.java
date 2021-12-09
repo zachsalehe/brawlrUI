@@ -1,4 +1,4 @@
-package com.example.test2;
+package com.example.test2.chat;
 
 
 import android.view.LayoutInflater;
@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.test2.chat.Chat;
+import com.example.test2.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -22,21 +22,29 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+/**
+ * this is a class responsible for displaying the text to be shown in the individual
+ * text boxes
+ */
 public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.MessageViewHolder>
 {
-    private List<Chat> userMessagesList;
+    private final List<Chat> userMessagesList;
     private FirebaseAuth mAuth;
-    private DatabaseReference usersRef;
 
-
+    /**
+     * constructor for the message adapter
+     * @param userMessagesList a list of messages to be displayed
+     */
     public MessagesAdapter(List<Chat> userMessagesList)
     {
         this.userMessagesList = userMessagesList;
     }
 
 
-
-    public class MessageViewHolder extends RecyclerView.ViewHolder
+    /**
+     * it creates a view holder for our messages and connects it to our view
+     */
+    public static class MessageViewHolder extends RecyclerView.ViewHolder
     {
         public TextView senderMessageText, receiverMessageText;
         public CircleImageView receiverProfileImage;
@@ -48,15 +56,18 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
             super(itemView);
 
             senderMessageText = (TextView) itemView.findViewById(R.id.username);
-            //replace username with sender_message_text or something similar, needs to be done within firebase I believe
             receiverMessageText = (TextView) itemView.findViewById(R.id.username2);
-            //receiver_message_text
         }
     }
 
 
-
-
+    /**
+     * creates the desired number of places to write our messages and displays it on the screen
+     * @param viewGroup a view that contatins other view (view of message box containing view of
+     *                  message)
+     * @param i an iterator variable
+     * @return it returns a view ready to have a message added to it
+     */
     @NonNull
     @Override
     public MessageViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i)
@@ -70,7 +81,12 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
     }
 
 
-
+    /**
+     * this binds the actual messages to the message text boxes that are meant to hold them. It
+     * connects to the database and also gets the most recent messages to be displayed
+     * @param messageViewHolder the view that will hold our messages to be displayed
+     * @param i an iterator variable
+     */
     @Override
     public void onBindViewHolder(@NonNull final MessageViewHolder messageViewHolder, int i)
     {
@@ -79,7 +95,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
 
         String fromUserID = chat.getSender();
 
-        usersRef = FirebaseDatabase.getInstance().getReference().child("Users").child(fromUserID);
+        DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference().child("Users").child(fromUserID);
 
         usersRef.addValueEventListener(new ValueEventListener() {
             @Override

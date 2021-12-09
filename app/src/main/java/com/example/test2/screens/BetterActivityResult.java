@@ -1,7 +1,7 @@
 // This class was found from the link below to help with image uploading.
 // https://stackoverflow.com/questions/62671106/onactivityresult-method-is-deprecated-what-is-the-alternative
 
-package com.example.test2;
+package com.example.test2.screens;
 
 import android.content.Intent;
 import androidx.activity.result.ActivityResult;
@@ -12,6 +12,10 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+/**
+ * this class is class is a helper class for the biographical screen class, it is responsible for
+ * retrieving images from the phone
+ */
 public class BetterActivityResult<Input, Result> {
     /**
      * Register activity result using a {@link ActivityResultContract} and an in-place activity result callback like

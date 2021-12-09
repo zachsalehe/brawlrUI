@@ -12,6 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.test2.R;
 
+/**
+ * this is a class that creates view holder for our bubble boxes (look at chatAdapter)
+ */
 public class ChatViewHolders extends RecyclerView.ViewHolder implements View.OnClickListener{
     public TextView mMessage;
     public LinearLayout mContainer;
@@ -19,8 +22,8 @@ public class ChatViewHolders extends RecyclerView.ViewHolder implements View.OnC
         super(itemView);
         itemView.setOnClickListener(this);
 
-        mMessage = (TextView) itemView.findViewById(R.id.message); //update with messageID
-        mContainer = (LinearLayout) itemView.findViewById(R.id.chatContainer); //update with Linear Layout ID
+        mMessage = (TextView) itemView.findViewById(R.id.message);
+        mContainer = (LinearLayout) itemView.findViewById(R.id.chatContainer);
     }
 
     @Override

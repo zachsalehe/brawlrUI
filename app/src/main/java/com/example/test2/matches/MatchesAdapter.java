@@ -13,15 +13,26 @@ import com.example.test2.R;
 
 import java.util.List;
 
+/**
+ * this is the matches adapter, it is a class that is used as part of our matches activity to
+ * display chat thumbnails
+ */
 public class MatchesAdapter extends RecyclerView.Adapter<MatchesViewHolders>{
-    private List<Match> matchesList;
-    private Context context;
+    private final List<Match> matchesList;
+    private final Context context;
 
     public MatchesAdapter(List<Match> matchesList, Context context){
         this.matchesList = matchesList;
         this.context = context;
     }
 
+    /**
+     * this creates a view holder which is basically what an iframe is in web development, it is a
+     * peice of UI that is sourced from a different area of our program
+     * @param parent the parent would be the matches activity
+     * @param viewType this is the type of the view we want to show
+     * @return it returns a MatchesViewHolder object which we actually defined somewhere else
+     */
     @NonNull
     @Override
     public MatchesViewHolders onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -29,10 +40,15 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesViewHolders>{
         RecyclerView.LayoutParams lp = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         layoutView.setLayoutParams(lp);
         MatchesViewHolders rcv = new MatchesViewHolders(layoutView);
-        System.out.println("Yay2!");
         return rcv;
     }
 
+    /**
+     * here we are editing the chat thumbnail we are creating and addid the user id and name into
+     * it
+     * @param holder the holder is the thumbnail
+     * @param position the position is the position of the thumbnail
+     */
     @Override
     public void onBindViewHolder(@NonNull MatchesViewHolders holder, int position) {
         holder.mMatchId.setText(matchesList.get(position).getUserId());

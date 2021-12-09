@@ -9,8 +9,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.test2.HomeScreen;
-import com.example.test2.ProfileScreen;
+import com.example.test2.screens.HomeScreen;
+import com.example.test2.screens.ProfileScreen;
 import com.example.test2.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -22,13 +22,23 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * this displays the base of the matches screen. The matches screen works by having a background and
+ * overlaying different screen segments on top so that the screen can change dynamically depending
+ * on the number of open chats the user has. The matches screen is the first screen you see when you
+ * click on chat on the app, the one before opening an actual chat with another user
+ */
 public class MatchesActivity extends AppCompatActivity {
 
-    private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mMatchAdapter;
-    private RecyclerView.LayoutManager mMatchLayoutManager;
 
     private String currentUserID;
+
+    /**
+     * this sets up the matches view and calls on the matches adapter which will overlay on the
+     * view to display caht information
+     * @param savedInstanceState a saved instance of the screen in case the user closes the app
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,11 +47,11 @@ public class MatchesActivity extends AppCompatActivity {
 
         currentUserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.matchView);
+        RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.matchView);
         mRecyclerView.setNestedScrollingEnabled(false);
         mRecyclerView.setHasFixedSize(true);
 
-        mMatchLayoutManager = new LinearLayoutManager(MatchesActivity.this);
+        RecyclerView.LayoutManager mMatchLayoutManager = new LinearLayoutManager(MatchesActivity.this);
         mRecyclerView.setLayoutManager(mMatchLayoutManager);
         mMatchAdapter = new MatchesAdapter(getDataSetMatch(), MatchesActivity.this);
         mRecyclerView.setAdapter(mMatchAdapter);
@@ -49,6 +59,10 @@ public class MatchesActivity extends AppCompatActivity {
         getUserMatchId();
     }
 
+    /**
+     * this function is responsible for adding a database listener to our match data in order to
+     * automatically update the matches screen if new matches have been made
+     */
     private void getUserMatchId() {
 
         DatabaseReference matchDb = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserID).child("connections").child("matches");
@@ -69,6 +83,11 @@ public class MatchesActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * this function gets the match information of our users for it to be displayed on the matches
+     * screen
+     * @param key
+     */
     private void FetchMatchInformation(String key) {
         DatabaseReference userDb = FirebaseDatabase.getInstance().getReference().child("Users").child(key);
         userDb.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -99,7 +118,7 @@ public class MatchesActivity extends AppCompatActivity {
 
     }
 
-    private ArrayList<Match> resultsMatches = new ArrayList<Match>();
+    private final ArrayList<Match> resultsMatches = new ArrayList<Match>();
     private List<Match> getDataSetMatch() {
         return resultsMatches;
     }
